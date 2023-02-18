@@ -2,6 +2,7 @@ package com.amazon.classifieds.operations;
 
 import com.amazon.classifieds.customExceptions.ApplicationException;
 import com.amazon.classifieds.customExceptions.UserException;
+import com.amazon.classifieds.managers.UserManager;
 
 @SuppressWarnings("unused")
 public class UserOperation extends BaseOperation{
@@ -24,8 +25,7 @@ public class UserOperation extends BaseOperation{
 
 			switch (choice) {
 			case "1":
-				System.out.println("\nManage Profile not implemented yet");
-				//updateProfile(userId);
+				manageProfile(userId);
 				break;
 
 			case "2":
@@ -46,8 +46,8 @@ public class UserOperation extends BaseOperation{
 		System.out.println("Thank You For Using our Employee Internal Classifieds Application\n");
 	}
 	
-/*
-	private boolean updateProfile(int userId) throws ApplicationException {
+
+	private boolean manageProfile(int userId) throws ApplicationException {
 		boolean exCode = false;
 		String choice = "";
 
@@ -111,5 +111,69 @@ public class UserOperation extends BaseOperation{
 		System.out.println("Returning to User Menu");
 
 		return true;
-	}*/
+	}
+
+	private boolean updatePassword(int userId) throws UserException, ApplicationException {
+		System.out.println("Existing Password :\n");
+		String oldPassword = this.getExistingPassword(userId);
+
+		System.out.println("Enter New Password :\n" +
+				"[Should be of at least 8 characters, contain only letters and digits and " +
+				"must contain at least 2 digits]");
+		String newPassword = this.getPassword();
+
+		if (this.arePasswordsMatching(oldPassword, newPassword)) {
+			System.out.println("New Password is the same as Current password.");
+			return false;
+		}
+
+		System.out.println("Enter New Password Again :\n");
+		String newConfirmedPassword = this.getConfirmedPassword(newPassword);
+
+		UserManager.getInstance().update(userId, "password", newConfirmedPassword);
+
+		System.out.println("Your password has been updated. Hereafter, you must log-in using your new " +
+				"password\n");
+
+		return true;
+	}
+
+	private boolean updateContactNo(int userId) throws UserException, ApplicationException {
+		System.out.println("\nContact Number[Only 10 digits or 12 digits with country code] :");
+		String contactNumber = this.getContactNo();
+
+		UserManager
+		.getInstance()
+		.update(userId, "contactno", contactNumber);
+
+		System.out.println("Your Contact Number has been Updated to : " + contactNumber);
+
+		return true;
+	}
+
+	private boolean updateEmail(int userId) throws UserException, ApplicationException {
+		System.out.println("E-mail Address :\n");
+		String email = this.getEmail();
+
+		UserManager
+		.getInstance()
+		.update(userId, "email", email);
+
+		System.out.println("Your contact E-mail address has been Updated to : " + email);
+
+		return true;
+	}
+
+	private void updateName(int userId) throws UserException, ApplicationException {
+		System.out.println("Name :\n");
+		String name = this.getName();
+
+
+		UserManager
+		.getInstance()
+		.update(userId, "fname", name);
+
+		System.out.println("You Name has been updated to : " + name);
+	}
+
 }
