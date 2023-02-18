@@ -27,7 +27,13 @@ public class OperationFactory {
 		return new UserOperation();
 	}
 	
+	public static UserLoginOperation getUserLoginInstance() {
+		return new UserLoginOperation();
+	}
+	
 	public static Scanner getScannerInstance() {
 		return new Scanner(System.in);
 	}
+	
+	
 }

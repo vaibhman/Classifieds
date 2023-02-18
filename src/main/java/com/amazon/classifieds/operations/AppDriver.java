@@ -31,12 +31,12 @@ public class AppDriver {
 			case "2":
 				System.out.println("Welcome User!\n");
 
-				/*try {
-	            //OperationFactory.getUserLoginInstance().showMenu();
-	          } catch (ApplicationException e) {
-	            System.out.println(e.getMessage());
-	            e.printStackTrace();
-	          }*/
+				try {
+					OperationFactory.getUserLoginInstance().showMenu();
+				} catch (ApplicationException e) {
+					System.out.println(e.getMessage());
+					e.printStackTrace();
+				}
 				break;
 				
 			case "0":
@@ -48,7 +48,7 @@ public class AppDriver {
 			}
 		}
 
-		System.out.println("Thank You For Using our Employee BusPass Management Application\n");
+		System.out.println("Thank You For Using our Employee Internal Classifieds Application\n");
 		loadScreen();
 	}
 

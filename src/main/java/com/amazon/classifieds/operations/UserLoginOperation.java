@@ -104,7 +104,7 @@ public class UserLoginOperation extends BaseOperation {
 			System.out.println("\n Confirm Password : \n" +
 					"[Should be the same value as entered before]");
 			String confirmedPassword = this.getConfirmedPassword(password);
-			
+
 			float walletBalance=0;
 
 			User user = AssetFactory.getInstance().getUserInstance(userId, name,
@@ -124,7 +124,7 @@ public class UserLoginOperation extends BaseOperation {
 	private void login(int userId, String password) throws ApplicationException, UserException {
 		if (UserManager.getInstance().isValidUserPassword(userId, password)) {
 			System.out.println("User Login Successful!");
-			OperationFactory.getUserOperationInstance().showMenu(userId); // So, yeha se return kar k kidhar setlogin pe?
+			OperationFactory.getUserOperationInstance().showMenu(userId); 
 		} else {
 			System.out.println("\nUnable to load account with entered credentials. " +
 					"\nPlease make sure that the entered credentials are correct \n");
