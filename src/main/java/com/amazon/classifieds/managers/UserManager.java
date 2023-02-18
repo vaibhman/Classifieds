@@ -23,7 +23,8 @@ public class UserManager extends BaseManager {
 				.insertValue("email", user.getEmail())
 				.insertValue("contactno", user.getContactNo())
 				.insertValue("password", user.getPassword())
-				.insertValue("walletBalance", user.getWalletBalance());
+				.insertValue("walletBalance", user.getWalletBalance())
+				.insertValue("isActive","true");
 
 		String sqlQuery = this.buildQuery(queryBuilder);
 

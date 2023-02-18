@@ -8,14 +8,17 @@ public class User {
 	private String contactNo;
 	private String password;
 	private float walletBalance;
+	private boolean isActive;
 	
 	public User(int userid, String name,  String email, String contactNo, String password, float walletBalance) {
 		super();
 		this.userId = userid;
 		this.name = name;
+		this.email = email;
 		this.contactNo = contactNo;
 		this.password = password;
 		this.walletBalance = walletBalance;
+		this.isActive =true;
 	}
 	
 	public int getUserId() {

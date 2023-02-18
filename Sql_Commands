@@ -1,11 +1,11 @@
 
 #Create_tables
-create table user(userId int NOT NULL PRIMARY KEY, name varchar(50),
-email varchar(50), contactNo varchar(12), password varchar(50), walletBalance float(8,2));
+create table user(userId int NOT NULL PRIMARY KEY, name varchar(50),email varchar(50), 
+contactNo varchar(12), password varchar(50), walletBalance float(8,2), isActive varchar(5));
 
 
 #Create_values
-insert into user (userId,name,email,contactNo, password, walletBalance)
-values(999999999,'Vinod Mahajan','vima@amazon.com','9876787896','vino1234', 1567.33);
-insert into user (userId,name,email,contactNo, password, walletBalance)
-values(999999998,'Bikash Kumar','bkuma@gmail.com','919008795029','bika1234', 2000);
+insert into user (userId,name,email,contactNo, password, walletBalance, isActive)
+values(999999999,'Vinod Mahajan','vima@amazon.com','9876787896','vino1234', 1567.33,'true');
+insert into user (userId,name,email,contactNo, password, walletBalance, isActive)
+values(999999998,'Bikash Kumar','bkuma@gmail.com','919008795029','bika1234', 2000,'true');
