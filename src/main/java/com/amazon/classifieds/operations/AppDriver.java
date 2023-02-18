@@ -19,8 +19,6 @@ public class AppDriver {
 
 			switch (choice) {
 			case "1":
-				System.out.println("Welcome Administrator!\n");
-
 				try {
 					OperationFactory.getAdminLoginInstance().showMenu();
 				} catch (ApplicationException e) {

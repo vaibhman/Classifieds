@@ -4,7 +4,7 @@ OOPS-> Identify Objects and Attributes
 	User 
 		userId; name; email; contactNo; password; walletBalance;
 	Classified
-		cId, headLine; cName; brand; condition; description; price; pictures
+		cId; status; headLine; cName; brand; condition; description; price; pictures;
 		 
 Relationships
 	User has classifieds	|	1 to many
