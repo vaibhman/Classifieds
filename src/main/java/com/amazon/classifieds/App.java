@@ -14,7 +14,7 @@ public class App
 		if(args.length>0) {
 			ConnectionManager.FILEPATH=args[0];
 		}
-		App2.view();
+		
 		AppDriver appDriver= new AppDriver();
 		appDriver.initiate();
 
