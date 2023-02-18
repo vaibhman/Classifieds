@@ -8,7 +8,7 @@ import com.amazon.classifieds.managers.UserManager;
 public class UserOperation extends BaseOperation{
 	void showMenu(int userId) throws ApplicationException {
 		System.out.println("--------------------------------------");
-		System.out.println("-------Welcome User: "+userId+"------");
+		System.out.println("-------Welcome User------");
 		System.out.println("--------------------------------------");
 		
 		boolean exitCode = false;
