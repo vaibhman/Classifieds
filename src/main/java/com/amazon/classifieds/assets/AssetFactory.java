@@ -16,15 +16,5 @@ public class AssetFactory {
 
 		return new User(userid, name,  email, contactNo, password, walletBalance);
 	}
-	
-	
-	/*
-	public Feedback getFeedbackInstance(int userId, String comment) throws ApplicationException {
-		int feedbackId = IdManager.getInstance().getNewId("feedback");
-
-		Feedback feedback = new Feedback(feedbackId, userId, comment);
-
-		return feedback;
-	}*/
 }
 
