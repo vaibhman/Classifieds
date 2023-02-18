@@ -44,5 +44,9 @@ public class User {
 	public float getWalletBalance() {
 		return walletBalance;
 	}
+
+	public boolean isActive() {
+		return isActive;
+	}
 }
 

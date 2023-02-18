@@ -85,7 +85,7 @@ public class UserLoginOperation extends BaseOperation {
 		if (userAlreadyExists) {
 			System.out.println("User Id for " + userId + " already exists\n");
 		}
-
+		
 		if (!userAlreadyExists) {
 			System.out.println("\n Name : \n");
 			String name = this.getName();
@@ -122,6 +122,12 @@ public class UserLoginOperation extends BaseOperation {
 
 	// If the user and password combination exist, redirect to UserOperations
 	private void login(int userId, String password) throws ApplicationException, UserException {
+		if(!UserManager.getInstance().isUserActive(userId)) {
+			System.out.println("Looks like this account was De-activated by Admin!");
+			System.out.println("Please contact Admin to Activate Your Account Again!");
+			return;
+		}
+		
 		if (UserManager.getInstance().isValidUserPassword(userId, password)) {
 			System.out.println("User Login Successful!");
 			OperationFactory.getUserOperationInstance().showMenu(userId); 

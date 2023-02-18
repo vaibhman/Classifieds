@@ -1,11 +1,33 @@
 
 #Create_tables
-create table user(userId int NOT NULL PRIMARY KEY, name varchar(50),email varchar(50), 
-contactNo varchar(12), password varchar(50), walletBalance float(8,2), isActive varchar(5));
+CREATE TABLE user(
+	userId INT NOT NULL PRIMARY KEY, 
+	name VARCHAR(50),
+	email VARCHAR(50), 
+	contactNo VARCHAR(12), 
+	password VARCHAR(50), 
+	walletBalance FLOAT(8,2), 
+	isActive VARCHAR(5)
+);
+
+CREATE TABLE Classifieds (
+  classifiedId INT PRIMARY KEY,
+  userId INT NOT NULL,
+  cStatus VARCHAR(20),
+  productName VARCHAR(50),
+  headLine VARCHAR(100),
+  brand VARCHAR(25),
+  pCondition INT,
+  pDescription VARCHAR(500),
+  price FLOAT(8,2),
+  FOREIGN KEY (userId) REFERENCES user(userId)
+);
+
 
 
 #Create_values
 insert into user (userId,name,email,contactNo, password, walletBalance, isActive)
 values(999999999,'Vinod Mahajan','vima@amazon.com','9876787896','vino1234', 1567.33,'true');
+
 insert into user (userId,name,email,contactNo, password, walletBalance, isActive)
 values(999999998,'Bikash Kumar','bkuma@gmail.com','919008795029','bika1234', 2000,'true');

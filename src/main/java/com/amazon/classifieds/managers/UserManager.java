@@ -31,7 +31,6 @@ public class UserManager extends BaseManager {
 		this.executeQuery(sqlQuery);
 	}
 
-	
 	public void update(int employeeId, String field, String newValue) throws ApplicationException {
 		QueryBuilder queryBuilder = this.getUpdateInstance()
 				.updateValue(field, newValue)
@@ -42,7 +41,6 @@ public class UserManager extends BaseManager {
 		this.executeQuery(sqlQuery);
 	}
 	
-
 	public boolean isValidUserPassword(int userId, String password) throws ApplicationException {
 		QueryBuilder queryBuilder = this.getSelectInstance()
 				.selectColumns("userid")
@@ -56,7 +54,6 @@ public class UserManager extends BaseManager {
 		return this.hasResult(sqlQuery);
 	}
 	
-
 	public boolean isValidUser(int userId) throws ApplicationException {
 		QueryBuilder queryBuilder = this.getSelectInstance()
 				.selectColumns("userid")
@@ -65,6 +62,18 @@ public class UserManager extends BaseManager {
 
 		String sqlQuery = this.buildQuery(queryBuilder);
 
+		return this.hasResult(sqlQuery);
+	}
+	
+	public boolean isUserActive(int userId)  throws ApplicationException {
+		QueryBuilder queryBuilder = this.getSelectInstance()
+				.selectColumns("userId")
+				.onTable("user")
+				.whereEq("userId", userId)
+				.whereEq("isActive", "true");
+
+		String sqlQuery = this.buildQuery(queryBuilder);
+		
 		return this.hasResult(sqlQuery);
 	}
 }
