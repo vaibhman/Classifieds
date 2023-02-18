@@ -21,11 +21,11 @@ public class AppDriver {
 			case "1":
 				System.out.println("Welcome Administrator!\n");
 
-				/*try {
-	            //OperationFactory.getAdminLoginInstance().showMenu();
-	          } catch (ApplicationException e) {
-	            e.printStackTrace();
-	          }*/
+				try {
+					OperationFactory.getAdminLoginInstance().showMenu();
+				} catch (ApplicationException e) {
+					e.printStackTrace();
+				}
 				break;
 
 			case "2":

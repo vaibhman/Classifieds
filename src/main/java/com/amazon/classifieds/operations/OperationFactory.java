@@ -31,6 +31,14 @@ public class OperationFactory {
 		return new UserLoginOperation();
 	}
 	
+	public static AdminLoginOperation getAdminLoginInstance() {
+		return AdminLoginOperation.getInstance();
+	}
+
+	public static AdminOperation getAdminOperationInstance() {
+		return new AdminOperation();
+	}
+	
 	public static Scanner getScannerInstance() {
 		return new Scanner(System.in);
 	}
