@@ -34,8 +34,8 @@ public class UserLoginOperation extends BaseOperation {
 
 		while (!exitCode) {
 			System.out.println("\nWelcome to the User Login/Sign-up Page");
-			System.out.println("\n1. Existing User " +
-					"\n2. New User" +
+			System.out.println("\n1. Login " +
+					"\n2. Create Account" +
 					"\n0. Exit\n");
 
 			choice = sc.next();

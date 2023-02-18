@@ -33,7 +33,6 @@ public class AdminOperation {
 				System.out.println("\nSelect an Option:");
 				System.out.println("\n1. Activate User"
 								+"\n2. De-activate User"
-								+"\n3. Change Type of classified"
 								+"\n0. Exit \n");
 				break;
 			case "4":
