@@ -28,8 +28,9 @@ public class ClassifiedManager extends BaseManager{
 	  }
 	  
 	  public void create(Classified classified) throws ApplicationException {
+
 		  QueryBuilder queryBuilder = this.getInsertInstance()
-				  .onTable("Classifieds")
+				  .onTable("classifieds")
 				  .insertValue("classifiedId", classified.getClassifiedId())
 				  .insertValue("userId",classified.getUserId())
 				  .insertValue("cStatus",classified.getcStatus())
@@ -47,7 +48,7 @@ public class ClassifiedManager extends BaseManager{
 	  
 	  public void update(int classifiedId, String field, String newValue) throws ApplicationException {
 		  QueryBuilder queryBuilder = this.getUpdateInstance()
-				  .onTable("Classifieds")
+				  .onTable("classifieds")
 				  .updateValue(field, newValue)
 				  .whereEq("classifiedId", classifiedId);
 
@@ -58,7 +59,7 @@ public class ClassifiedManager extends BaseManager{
 
 	  public void delete(int classifiedIdToRemove) throws ApplicationException {
 		  QueryBuilder queryBuilder = this.getDeleteInstance()
-				  .onTable("Classifieds")
+				  .onTable("classifieds")
 				  .whereEq("classifiedId", classifiedIdToRemove);
 
 		  String sqlQuery = this.buildQuery(queryBuilder);

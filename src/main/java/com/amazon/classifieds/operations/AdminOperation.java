@@ -97,6 +97,7 @@ public class AdminOperation extends BaseOperation{
 					+"\n2. Reject Classified"
 					+"\n3. View All Classifieds"
 					+"\n4. View Pending Classifieds"
+					+"\n5. Remove Classified"
 					+"\n0. Exit \n");
 			
 			String choice = OperationFactory.getScannerInstance().next();
@@ -106,8 +107,10 @@ public class AdminOperation extends BaseOperation{
 					try {
 						changeClassifiedStatus("Approved");
 					} catch (ApplicationException e) {
+						System.out.println("Something Went Wrong");
 						e.printStackTrace();
 					} catch (UserException e) {
+						System.out.println("Something Went Wrong");
 						e.printStackTrace();
 					}
 					break;
@@ -116,8 +119,10 @@ public class AdminOperation extends BaseOperation{
 					try {
 						changeClassifiedStatus("Rejected");
 					} catch (ApplicationException e) {
+						System.out.println("Something Went Wrong");
 						e.printStackTrace();
 					} catch (UserException e) {
+						System.out.println("Something Went Wrong");
 						e.printStackTrace();
 					}
 					break;
@@ -126,6 +131,7 @@ public class AdminOperation extends BaseOperation{
 					try {
 						viewAllClassifieds();
 					} catch (ApplicationException e) {
+						System.out.println("Something Went Wrong");
 						e.printStackTrace();
 					}
 					break;
@@ -134,8 +140,18 @@ public class AdminOperation extends BaseOperation{
 					try {
 						viewPendingClassifieds();
 					} catch (ApplicationException e) {
+						System.out.println("Something Went Wrong");
 						e.printStackTrace();
 					}
+					break;
+					
+				case "5":
+				try {
+					removeClassified();
+				} catch (ApplicationException | UserException e) {
+					System.out.println("Something Went Wrong");
+					e.printStackTrace();
+				}
 					break;
 				case "0":
 					exitCode=true;
@@ -148,6 +164,31 @@ public class AdminOperation extends BaseOperation{
 		
 	}
 	
+	private boolean removeClassified() throws ApplicationException, UserException {
+		System.out.println("For your reference,");
+		viewAllClassifieds();
+	    System.out.println("\nPlease enter Classified Id to remove : \n");
+	    int classifiedIdToRemove = this.getClassifiedId();
+
+	    if (!ClassifiedManager
+	            .getInstance()
+	            .isPresent("classifieds", "classifiedId", classifiedIdToRemove)) {
+	      System.out.println("Invalid Classified ID Entered ===>" + classifiedIdToRemove + "<=== " +
+	              "\nReturning to Previous Menu\n");
+
+	      return false;
+	    }
+
+	    ClassifiedManager.getInstance().delete(classifiedIdToRemove);
+
+	    System.out.println("\nUpdated Classifieds list : \n");
+		viewAllClassifieds();
+
+	    System.out.println("\nclassified with ID : " + classifiedIdToRemove + " has been removed!\n");
+
+	    return true;
+	}
+
 	private boolean viewPendingClassifieds() throws ApplicationException{
 		ClassifiedManager
 		.getInstance()
@@ -208,7 +249,7 @@ public class AdminOperation extends BaseOperation{
 		int userId= 111111111;
 
 		Classified newClassified = AssetFactory.getInstance().getClassifiedInstance(userId, cStatus, productName, headLine, brand, pCondition, pDescription, price);
-
+		
 		ClassifiedManager.getInstance().create(newClassified);
 
 		System.out.println("Classified Created Successfully with id: "+newClassified.getClassifiedId());
