@@ -10,6 +10,7 @@ import com.amazon.classifieds.queryHelper.QueryBuilder;
 
 @SuppressWarnings("unused")
 public class UserOperation extends BaseOperation{
+	
 	void showMenu(int userId) throws ApplicationException {
 		
 		
@@ -76,6 +77,40 @@ public class UserOperation extends BaseOperation{
 		return true;
 	}
 
+
+	private boolean postClassified(int userId) throws UserException, ApplicationException{
+		System.out.println("\n Please Enter Classified Details Below :");
+		
+		System.out.println("\n Product Name: ");
+		String productName = this.getProductName();
+		
+		System.out.println("\n Product HeadLine: ");
+		String headLine = this.getHeadLine();
+		
+		System.out.println("\n Brand of Product: ");
+		String brand = this.getBrand();
+		
+		System.out.println("Select Product Condition: ");
+		int pCondition = this.getpCondition();
+		
+		System.out.println("\n Description of Product: ");
+		String pDescription = this.getpDescription();
+		
+		System.out.println("\n Enter the price of Product: ");
+		float price = this.getPrice();
+		
+		String cStatus="Pending Approval";
+		
+		Classified newClassified = AssetFactory.getInstance().getClassifiedInstance(userId, cStatus, productName, headLine, brand, pCondition, pDescription, price);
+		
+	    ClassifiedManager.getInstance().create(newClassified);
+	    
+	    System.out.println("Classified Created Successfully with id: "+newClassified.getUserId());
+	    System.out.println("The classified is sent to Admin Approval");
+		
+		return true;
+	}
+	
 
 	private boolean manageProfile(int userId) throws ApplicationException {
 		boolean exCode = false;
@@ -204,39 +239,6 @@ public class UserOperation extends BaseOperation{
 		.update(userId, "fname", name);
 
 		System.out.println("You Name has been updated to : " + name);
-	}
-	
-	private boolean postClassified(int userId) throws UserException, ApplicationException{
-		System.out.println("\n Please Enter Classified Details Below :");
-		
-		System.out.println("\n Product Name: ");
-		String productName = this.getProductName();
-		
-		System.out.println("\n Product HeadLine: ");
-		String headLine = this.getHeadLine();
-		
-		System.out.println("\n Brand of Product: ");
-		String brand = this.getBrand();
-		
-		System.out.println("Select Product Condition: ");
-		int pCondition = this.getpCondition();
-		
-		System.out.println("\n Description of Product: ");
-		String pDescription = this.getpDescription();
-		
-		System.out.println("\n Enter the price of Product: ");
-		float price = this.getPrice();
-		
-		String cStatus="Pending Approval";
-		
-		Classified newClassified = AssetFactory.getInstance().getClassifiedInstance(userId, cStatus, productName, headLine, brand, pCondition, pDescription, price);
-		
-	    ClassifiedManager.getInstance().create(newClassified);
-	    
-	    System.out.println("Classified Created Successfully with id: "+newClassified.getUserId());
-	    System.out.println("The classified is sent to Admin Approval");
-		
-		return true;
 	}
 	
 }
