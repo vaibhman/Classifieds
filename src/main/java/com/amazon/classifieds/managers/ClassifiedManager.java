@@ -75,8 +75,6 @@ public class ClassifiedManager extends BaseManager{
 
 			String sqlQuery = this.buildQuery(queryBuilder);
 			
-			System.out.println(sqlQuery);
-
 			if (!this.hasResult(sqlQuery)) {
 				System.out.println("No Classifieds Found");
 				return false;

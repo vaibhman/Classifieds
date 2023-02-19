@@ -251,6 +251,21 @@ public class BaseOperation {
 	}
 	
 	//Classified parameters
+	protected int getClassifiedId() throws UserException {
+		
+		Scanner sc = OperationFactory.getScannerInstance();
+
+		int cId;
+
+		try {
+			cId = sc.nextInt();
+		} catch (InputMismatchException e) {
+			throw new UserException("\n Please enter valid Id ");
+		}
+
+		return cId;
+	}
+	
 	protected String getProductName() throws UserException {
 		Scanner sc = OperationFactory.getScannerInstance();
 

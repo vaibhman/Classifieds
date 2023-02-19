@@ -84,5 +84,4 @@ public class Classified {
 	public float getPrice() {
 		return price;
 	}
-	
 }
