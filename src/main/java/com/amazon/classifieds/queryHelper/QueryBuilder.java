@@ -168,6 +168,11 @@ public class QueryBuilder {
 		this.insertValue(key, val);
 		return this;
 	}
+	
+	public QueryBuilder updateValue(String key, float val) {
+		this.insertValue(key, val);
+		return this;
+	}
 
 	// Sets the table on which query will act on
 	public QueryBuilder onTable(String table) {

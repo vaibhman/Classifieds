@@ -64,7 +64,6 @@ public class UserOperation extends BaseOperation{
 				try {
 					viewWallet(userId);
 				} catch (ClassNotFoundException | SQLException | ApplicationException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				break;
@@ -83,11 +82,45 @@ public class UserOperation extends BaseOperation{
 	
 
 	private void viewWallet(int userId) throws ClassNotFoundException, SQLException, ApplicationException {
-		
-		float walletBalance= UserManager.getInstance().getWalletBalance(userId);
-		System.out.println("Your Wallet Balance is: "+ walletBalance);
-		System.out.println("1. Add Money to your Wallet");
-		System.out.println("2. Withdraw Money from your Wallet");
+
+		boolean exitCode = false;
+
+		while (!exitCode) {
+			float walletBalance= UserManager.getInstance().getWalletBalance(userId);
+			System.out.println("Your Wallet Balance is: "+ walletBalance);
+			System.out.println("1. Add Money to your Wallet \n"
+							+"2. Withdraw Money from your Wallet\n"
+							+"0. Exit");
+
+			String choice = OperationFactory.getScannerInstance().next();
+
+			switch (choice) {
+				case "1":
+					try {
+						UserManager.getInstance().addMoneytoWallet(userId, walletBalance);
+					} catch (ClassNotFoundException | SQLException | ApplicationException e) {
+						System.out.println("Something Went Wrong...");
+						e.printStackTrace();
+					}
+					break;
+					
+				case "2":
+					try {
+						UserManager.getInstance().withdrawMoneyFromWallet(userId, walletBalance);
+					} catch (ClassNotFoundException | SQLException | ApplicationException | UserException e) {
+						System.out.println("Something Went Wrong...");
+						e.printStackTrace();
+					}
+
+					break;
+				
+				case "3":
+					exitCode=true;
+					break;
+				default:
+					System.out.println("Please select valid option.");
+			}
+		}
 	}
 
 

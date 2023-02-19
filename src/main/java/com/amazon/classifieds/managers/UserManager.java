@@ -4,6 +4,8 @@ import java.sql.SQLException;
 
 import com.amazon.classifieds.assets.User;
 import com.amazon.classifieds.customExceptions.ApplicationException;
+import com.amazon.classifieds.customExceptions.UserException;
+import com.amazon.classifieds.operations.OperationFactory;
 import com.amazon.classifieds.queryHelper.QueryBuilder;
 
 public class UserManager extends BaseManager {
@@ -91,5 +93,49 @@ public class UserManager extends BaseManager {
 		System.out.println(sqlQuery);
 		return this.getQueryNumberFloat(sqlQuery);
 	}
+	
+	public boolean setWalletBalance(int userId, float newValue) throws ClassNotFoundException, SQLException, ApplicationException {	
+
+	    QueryBuilder queryBuilder = this.getUpdateInstance()
+	            .onTable("user")
+	            .updateValue("walletBalance", newValue)
+	            .whereEq("userId", userId);
+
+	    String sqlQuery = this.buildQuery(queryBuilder);
+
+	    this.executeQuery(sqlQuery);
+	    
+		return true;
+	}
+	public boolean addMoneytoWallet(int userId, float walletBalance) throws ClassNotFoundException, SQLException, ApplicationException {
+		System.out.println("Enter Amount: ");
+		float amount = this.getWalletBalance(userId); 
+		System.out.println("Enter upi id: ");
+		String upiId = OperationFactory.getScannerInstance().next(); 
+		System.out.println("Enter password: ");
+		String pass = OperationFactory.getScannerInstance().next(); 
+		float newValue = walletBalance+amount;
+
+		return UserManager
+		.getInstance()
+		.setWalletBalance(userId, newValue);
+	}
+	
+	public boolean withdrawMoneyFromWallet(int userId, float walletBalance) throws ClassNotFoundException, SQLException, ApplicationException, UserException {
+		System.out.println("Enter Amount to Withdraw: ");
+		float amount = this.getWalletBalance(userId); 
+		if(amount>walletBalance) {
+			throw new UserException("\n Can't withdraw more that Wallet balance");
+		}
+		System.out.println("Enter Bank Account No. : ");
+		String bankNo = OperationFactory.getScannerInstance().next(); 
+
+		float newValue = walletBalance-amount;
+
+		return UserManager
+		.getInstance()
+		.setWalletBalance(userId, newValue);
+	}
+	
 }
 

@@ -252,6 +252,24 @@ public class BaseOperation {
 		return adminPassword;
 	}
 	
+	protected float getAmount() throws UserException {
+		Scanner sc = OperationFactory.getScannerInstance();
+
+		float amount;
+
+		try {
+			amount = sc.nextFloat();
+		} catch (InputMismatchException e) {
+			throw new UserException(" Invalid Value Entered.");
+		}
+		
+		if (!Validator.isPositive(amount)) {
+			throw new UserException("\n Employee ID cannot be a negative number.");
+		}
+		return amount;
+	}
+	
+	
 	//Classified parameters
 	protected int getClassifiedId() throws UserException {
 		
