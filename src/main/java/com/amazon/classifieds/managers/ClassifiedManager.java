@@ -67,7 +67,7 @@ public class ClassifiedManager extends BaseManager{
 	  }
 	  
 	  public boolean viewAllClassifieds() throws ApplicationException {
-			String[] columns = {"classifiedId", "userId", "productName", "headLine", "brand", "pCondition", "pDescription","price"};
+			String[] columns = {"classifiedId", "userId", "cStatus", "productName", "headLine", "brand", "pCondition", "pDescription","price"};
 
 			QueryBuilder queryBuilder = this.getSelectInstance()
 					.selectColumns(columns)
@@ -80,9 +80,56 @@ public class ClassifiedManager extends BaseManager{
 				return false;
 			}
 
-			String[] headers = {"CLASSIFIED ID", "POSTED BY", "PRODUCT NAME", "HEADLINE", "BRAND", "CONDITION", "DESCRIPTION", "PRICE"};
+			String[] headers = {"CLASSIFIED ID", "POSTED BY", "STATUS", "PRODUCT NAME", "HEADLINE", "BRAND", "CONDITION", "DESCRIPTION", "PRICE"};
 			this.executeQuery(sqlQuery, headers);
 
 			return true;
 	  }
+
+	  public boolean viewPendingClassifieds() throws ApplicationException{
+			String[] columns = {"classifiedId", "userId", "cStatus", "productName", "headLine", "brand", "pCondition", "pDescription","price"};
+
+			QueryBuilder queryBuilder = this.getSelectInstance()
+					.selectColumns(columns)
+					.onTable("classifieds")
+					.whereEq("cStatus", "Pending Approval");
+
+			String sqlQuery = this.buildQuery(queryBuilder);
+			
+			if (!this.hasResult(sqlQuery)) {
+				System.out.println("No Classifieds Found");
+				return false;
+			}
+
+			String[] headers = {"CLASSIFIED ID", "POSTED BY", "STATUS", "PRODUCT NAME", "HEADLINE", "BRAND", "CONDITION", "DESCRIPTION", "PRICE"};
+			this.executeQuery(sqlQuery, headers);
+
+			return true;
+		  
+	  }
+	  
+	  public boolean viewApprovedClassifieds() throws ApplicationException{
+			String[] columns = {"classifiedId", "userId", "productName", "headLine", "brand", "pCondition", "pDescription","price"};
+
+			QueryBuilder queryBuilder = this.getSelectInstance()
+					.selectColumns(columns)
+					.onTable("classifieds")
+					.whereEq("cStatus", "Approved");
+
+			String sqlQuery = this.buildQuery(queryBuilder);
+			
+			if (!this.hasResult(sqlQuery)) {
+				System.out.println("No Classifieds Found");
+				return false;
+			}
+
+			String[] headers = {"CLASSIFIED ID", "POSTED BY", "PRODUCT NAME", "HEADLINE", "BRAND", "CONDITION", "DESCRIPTION", "PRICE"};
+			this.executeQuery(sqlQuery, headers);
+
+			return true;
+		  
+	  }
+	  
+	   
+
 }

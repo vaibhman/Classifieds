@@ -30,7 +30,7 @@ public class BaseOperation {
 		String name;
 
 		try {
-			name = sc.next();
+			name = sc.nextLine();
 		} catch (InputMismatchException e) {
 			throw new UserException("Entered Name is Invalid");
 		}

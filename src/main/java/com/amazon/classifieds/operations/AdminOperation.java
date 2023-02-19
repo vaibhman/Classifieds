@@ -65,9 +65,10 @@ public class AdminOperation extends BaseOperation{
 		while(!exitCode) {
 			
 			System.out.println("\nSelect an Option:");
-			System.out.println("\n1. Approve Classifieds"
-					+"\n2. Reject Classifieds"
+			System.out.println("\n1. Approve Classified"
+					+"\n2. Reject Classified"
 					+"\n3. View All Classifieds"
+					+"\n4. View Pending Classifieds"
 					+"\n0. Exit \n");
 			
 			String choice = OperationFactory.getScannerInstance().next();
@@ -104,7 +105,14 @@ public class AdminOperation extends BaseOperation{
 						e.printStackTrace();
 					}
 					break;
-					
+				
+				case "4":
+					try {
+						viewPendingClassifieds();
+					} catch (ApplicationException e) {
+						e.printStackTrace();
+					}
+					break;
 				case "0":
 					exitCode=true;
 					break;
@@ -114,6 +122,13 @@ public class AdminOperation extends BaseOperation{
 		}
 		System.out.println("Returning to Previous Menu");
 		
+	}
+	
+	private boolean viewPendingClassifieds() throws ApplicationException{
+		ClassifiedManager
+		.getInstance()
+		.viewPendingClassifieds();
+		return true;
 	}
 	
 	private boolean viewAllClassifieds() throws ApplicationException{

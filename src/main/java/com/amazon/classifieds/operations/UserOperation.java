@@ -25,7 +25,7 @@ public class UserOperation extends BaseOperation{
 			System.out.println("\nSelect an Option :");
 			System.out.println("\n1. Manage your Profile"
 							+ "\n2. Post a Classified"
-							+ "\n3. View all Classified"
+							+ "\n3. View Classifieds" //Only approved classified will be visible
 							+ "\n0. Exit \n");
 
 			String choice = OperationFactory.getScannerInstance().next();
@@ -51,7 +51,7 @@ public class UserOperation extends BaseOperation{
 				
 			case "3":
 				try {
-					viewAllClassifieds();
+					viewClassifieds();
 				} catch (ApplicationException e) {
 					e.printStackTrace();
 				}
@@ -70,10 +70,10 @@ public class UserOperation extends BaseOperation{
 	}
 	
 
-	private boolean viewAllClassifieds() throws ApplicationException{
+	private boolean viewClassifieds() throws ApplicationException{
 		ClassifiedManager
 			.getInstance()
-			.viewAllClassifieds();
+			.viewApprovedClassifieds();
 		return true;
 	}
 
@@ -236,7 +236,7 @@ public class UserOperation extends BaseOperation{
 
 		UserManager
 		.getInstance()
-		.update(userId, "fname", name);
+		.update(userId, "name", name);
 
 		System.out.println("You Name has been updated to : " + name);
 	}
