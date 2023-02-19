@@ -16,5 +16,12 @@ public class AssetFactory {
 
 		return new User(userid, name,  email, contactNo, password, walletBalance);
 	}
+	
+
+	public Classified getClassifiedInstance( int classifiedId, int userId, String cStatus, String productName, 
+											String headLine, String brand, int pCondition, String pDescription, float price) {
+		
+		return new Classified(classifiedId, userId, cStatus, productName, headLine, brand, pCondition, pDescription, price);
+	}
 }
 

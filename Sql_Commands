@@ -26,8 +26,8 @@ CREATE TABLE Classifieds (
 
 
 #Create_values
-insert into user (userId,name,email,contactNo, password, walletBalance, isActive)
-values(999999999,'Vinod Mahajan','vima@amazon.com','9876787896','vino1234', 1567.33,'true');
+INSERT INTO user (userId,name,email,contactNo, password, walletBalance, isActive)
+VALUES(999999999,'Vinod Mahajan','vima@amazon.com','9876787896','vino1234', 1567.33,'true');
 
-insert into user (userId,name,email,contactNo, password, walletBalance, isActive)
-values(999999998,'Bikash Kumar','bkuma@gmail.com','919008795029','bika1234', 2000,'true');
+INSERT INTO user (userId,name,email,contactNo, password, walletBalance, isActive)
+VALUES(999999998,'Bikash Kumar','bkuma@gmail.com','919008795029','bika1234', 2000,'true');
