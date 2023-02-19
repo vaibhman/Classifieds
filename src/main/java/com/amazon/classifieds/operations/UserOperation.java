@@ -1,5 +1,7 @@
 package com.amazon.classifieds.operations;
 
+import java.sql.SQLException;
+
 import com.amazon.classifieds.assets.AssetFactory;
 import com.amazon.classifieds.assets.Classified;
 import com.amazon.classifieds.customExceptions.ApplicationException;
@@ -26,6 +28,7 @@ public class UserOperation extends BaseOperation{
 			System.out.println("\n1. Manage your Profile"
 							+ "\n2. Post a Classified"
 							+ "\n3. View Classifieds" //Only approved classified will be visible
+							+ "\n4. Go to Wallet"
 							+ "\n0. Exit \n");
 
 			String choice = OperationFactory.getScannerInstance().next();
@@ -57,6 +60,15 @@ public class UserOperation extends BaseOperation{
 				}
 				break;
 				
+			case "4":
+				try {
+					viewWallet(userId);
+				} catch (ClassNotFoundException | SQLException | ApplicationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				break;
+				
 			case "0":
 				exitCode = true;
 				break;
@@ -69,6 +81,15 @@ public class UserOperation extends BaseOperation{
 		System.out.println("Thank You For Using our Employee Internal Classifieds Application\n");
 	}
 	
+
+	private void viewWallet(int userId) throws ClassNotFoundException, SQLException, ApplicationException {
+		
+		float walletBalance= UserManager.getInstance().getWalletBalance(userId);
+		System.out.println("Your Wallet Balance is: "+ walletBalance);
+		System.out.println("1. Add Money to your Wallet");
+		System.out.println("2. Withdraw Money from your Wallet");
+	}
+
 
 	private boolean viewClassifieds() throws ApplicationException{
 		ClassifiedManager

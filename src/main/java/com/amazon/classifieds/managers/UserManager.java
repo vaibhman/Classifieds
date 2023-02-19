@@ -1,5 +1,7 @@
 package com.amazon.classifieds.managers;
 
+import java.sql.SQLException;
+
 import com.amazon.classifieds.assets.User;
 import com.amazon.classifieds.customExceptions.ApplicationException;
 import com.amazon.classifieds.queryHelper.QueryBuilder;
@@ -75,6 +77,19 @@ public class UserManager extends BaseManager {
 		String sqlQuery = this.buildQuery(queryBuilder);
 		
 		return this.hasResult(sqlQuery);
+	}
+
+	
+	public float getWalletBalance(int userId) throws ClassNotFoundException, SQLException, ApplicationException {	
+
+		QueryBuilder queryBuilder = this.getSelectInstance()
+	              .selectColumns("walletBalance")
+	              .onTable("user")
+	              .whereEq("userId", userId);
+		
+		String sqlQuery = this.buildQuery(queryBuilder);
+		System.out.println(sqlQuery);
+		return this.getQueryNumberFloat(sqlQuery);
 	}
 }
 

@@ -100,6 +100,18 @@ public class QueryExecutor {
 		}
 		return -1;
 	}
+	
+	public float getQueryNumberFloat(String sqlQuery) throws SQLException, ClassNotFoundException {
+		Connection conn = ConnectionManager.getConnection();
+		Statement statement = conn.createStatement();
+
+		ResultSet resultSet = statement.executeQuery(sqlQuery);
+
+		if (resultSet.next()) {
+			return resultSet.getFloat(1);
+		}
+		return -1;
+	}
 
 	// Returns ResultSet object for a sqlQuery. For reads or validations in Middle Layers.
 	public ResultSet getResultSet(String sqlQuery) throws SQLException, ClassNotFoundException {
