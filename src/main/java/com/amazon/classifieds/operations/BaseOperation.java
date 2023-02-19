@@ -1,11 +1,13 @@
 package com.amazon.classifieds.operations;
 
+import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import com.amazon.classifieds.customExceptions.ApplicationException;
 import com.amazon.classifieds.customExceptions.UserException;
 import com.amazon.classifieds.dbtools.Validator;
+import com.amazon.classifieds.managers.ReportManager;
 import com.amazon.classifieds.managers.UserManager;
 
 /**
@@ -409,6 +411,36 @@ public class BaseOperation {
 		return price;
 	}
 
+	//Report parameters
+	protected int getUsersCount() throws ClassNotFoundException, SQLException {
+		return ReportManager.getInstance().getUserCount();
+	}	
+	
+	protected int getActiveUsersCount() throws ClassNotFoundException, SQLException {
+		return ReportManager.getInstance().getActiveUsersCount();
+	}	
+	
+	protected int getDeActivatedUsersCount() throws ClassNotFoundException, SQLException {
+		return ReportManager.getInstance().getDeActivatedUsersCount();
+	}	
+	
+	protected int getClassifiedsCount() throws ClassNotFoundException, SQLException {
+		return ReportManager.getInstance().getClassifiedsCount();
+	}	
+	
+	protected int getPendingClassifiedsCount() throws ClassNotFoundException, SQLException {
+		return ReportManager.getInstance().getPendingClassifiedsCount();
+	}	
+	
+	protected int getApprovedClassifiedsCount() throws ClassNotFoundException, SQLException {
+		return ReportManager.getInstance().getApprovedClassifiedsCount();
+	}	
+	
+	
+	protected int getRejectedClassifiedsCount() throws ClassNotFoundException, SQLException {
+		return ReportManager.getInstance().getRejectedClassifiedsCount();
+	}	
+	
 	//other
 	protected String getTimeString() throws UserException {
 		Scanner sc = OperationFactory.getScannerInstance();

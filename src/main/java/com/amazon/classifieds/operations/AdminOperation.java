@@ -1,5 +1,7 @@
 package com.amazon.classifieds.operations;
 
+import java.sql.SQLException;
+
 import com.amazon.classifieds.assets.AssetFactory;
 import com.amazon.classifieds.assets.Classified;
 import com.amazon.classifieds.customExceptions.ApplicationException;
@@ -44,8 +46,14 @@ public class AdminOperation extends BaseOperation{
 				break;
 				
 			case "4":
+				/*
 				System.out.println("\nReport Date Not Available");
-				System.out.println("\nPlease try later");
+				System.out.println("\nPlease try later");*/
+				try {
+					generateReport();
+				} catch (ClassNotFoundException | SQLException e) {
+					e.printStackTrace();
+				}
 				break;
 				
 			case "0":
@@ -57,6 +65,26 @@ public class AdminOperation extends BaseOperation{
 		}
 		System.out.println("Returning to Main Menu");
 		return true;
+	}
+
+	private void generateReport() throws ClassNotFoundException, SQLException {
+		int totalUsers = this.getUsersCount();
+		int activeUsers = this.getActiveUsersCount();
+		int deActivatedUser = this.getDeActivatedUsersCount();
+		int totalClassifieds = this.getClassifiedsCount();
+		int pendingClassifieds = this.getPendingClassifiedsCount();
+		int approvedClassifieds = this.getApprovedClassifiedsCount();
+		int rejectedClassifieds = this.getRejectedClassifiedsCount();
+		
+		
+		System.out.println("Total Number of Users: \t\t" + totalUsers);
+		System.out.println("Active Users: \t\t\t" + activeUsers);
+		System.out.println("De-activated Users: \t\t" + deActivatedUser);
+		System.out.println("Total Number of Classifieds: \t" + totalClassifieds);		
+		System.out.println("Pending Classifieds: \t\t" + pendingClassifieds);
+		System.out.println("Active Classifieds: \t\t" + approvedClassifieds);
+		System.out.println("Rejected Classifieds: \t\t" + rejectedClassifieds);
+		
 	}
 
 	private void manageClassified() throws ApplicationException {
