@@ -1,5 +1,8 @@
 package com.amazon.classifieds.assets;
 
+import com.amazon.classifieds.customExceptions.ApplicationException;
+import com.amazon.classifieds.managers.IdManager;
+
 public class AssetFactory {
 
 	private static AssetFactory assetFactory;
@@ -18,10 +21,13 @@ public class AssetFactory {
 	}
 	
 
-	public Classified getClassifiedInstance( int classifiedId, int userId, String cStatus, String productName, 
-											String headLine, String brand, int pCondition, String pDescription, float price) {
+	public Classified getClassifiedInstance(int userId, String cStatus, String productName, 
+											String headLine, String brand, int pCondition, String pDescription, float price) throws ApplicationException {
+	    int classifiedId = IdManager.getInstance().getNewId("classified");
+	    
+		Classified classified = new Classified(classifiedId, userId, cStatus, productName, headLine, brand, pCondition, pDescription, price);
 		
-		return new Classified(classifiedId, userId, cStatus, productName, headLine, brand, pCondition, pDescription, price);
+		return classified;
 	}
 }
 

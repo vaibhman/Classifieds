@@ -127,7 +127,7 @@ public class BaseOperation {
 		return password;
 	}
 
-	// PARAMs
+	// Parameters
 	protected String getConfirmedPassword(String password) throws UserException {
 		Scanner sc = OperationFactory.getScannerInstance();
 
@@ -249,7 +249,152 @@ public class BaseOperation {
 		}
 		return adminPassword;
 	}
+	
+	//Classified parameters
+	protected String getProductName() throws UserException {
+		Scanner sc = OperationFactory.getScannerInstance();
 
+		String productName;
+
+		try {
+			productName = sc.nextLine();
+		} catch (InputMismatchException e) {
+			throw new UserException("\n Please enter valid Product Name ");
+		}
+
+		if (!Validator.isValidProductNameLength(productName)) {
+			throw new UserException("Product Name value exceeds maximum size of 50 characters");
+		}
+
+		return productName;
+	}
+	
+	protected String getHeadLine() throws UserException {
+		Scanner sc = OperationFactory.getScannerInstance();
+
+		String headLine;
+
+		try {
+			headLine = sc.nextLine();
+		} catch (InputMismatchException e) {
+			throw new UserException("\n Please enter valid headLine ");
+		}
+
+		if (!Validator.isValidHeadLineLength(headLine)) {
+			throw new UserException("Headline value exceeds maximum size of 100 characters");
+		}
+
+		return headLine;
+	}
+	
+	protected String getBrand() throws UserException {
+		Scanner sc = OperationFactory.getScannerInstance();
+
+		String brand;
+
+		try {
+			brand = sc.nextLine();
+		} catch (InputMismatchException e) {
+			throw new UserException("\n Please enter valid brand ");
+		}
+
+		if (!Validator.isValidHeadLineLength(brand)) {
+			throw new UserException("Brand value exceeds maximum size of 25 characters");
+		}
+
+		return brand;
+	}
+	
+	protected int getpCondition() throws UserException {
+
+		Scanner sc = OperationFactory.getScannerInstance();
+		
+		int pCondition=0;
+		
+		boolean exitCode=false;
+		while(!exitCode) {
+			System.out.println("1.Brand New \n2.Lightly Used "
+					+ "\n3.Moderately Used \n4. Heavily Used "
+					+ "\n5.Damaged/Dented \n6. Not Working");
+			
+			String choice = sc.next();
+			
+			switch(choice){
+				case "1":
+					pCondition= 1;
+					exitCode=true;
+					break;
+				case "2":
+					pCondition= 2;
+					exitCode=true;
+					break;
+				case "3":
+					pCondition= 3;
+					exitCode=true;
+					break;
+				case "4":
+					pCondition= 4;
+					exitCode=true;
+					break;
+				case "5":
+					pCondition= 5;
+					exitCode=true;
+					break;
+				case "6":
+					pCondition= 6;
+					exitCode=true;
+					break;
+				default:
+					System.out.println("Please enter valid option");
+					break;
+			}
+		
+		}
+		
+		return pCondition;
+	}
+	
+	protected String getpDescription() throws UserException {
+		Scanner sc = OperationFactory.getScannerInstance();
+
+		String pDescription;
+
+		try {
+			pDescription = sc.nextLine();
+		} catch (InputMismatchException e) {
+			throw new UserException("\n Please enter valid Product Description ");
+		}
+
+		if (!Validator.isValidHeadLineLength(pDescription)) {
+			throw new UserException("Product Description value exceeds maximum size of 25 characters");
+		}
+
+		return pDescription;
+	}
+
+	protected float getPrice() throws UserException {
+		Scanner sc = OperationFactory.getScannerInstance();
+
+		float price;
+
+		try {
+			price = sc.nextFloat();
+		} catch (InputMismatchException e) {
+			throw new UserException("\n Please enter valid Price");
+		}
+
+		if (!Validator.isPositive(price)) {
+			throw new UserException("\n Price cannot be a negative number.");
+		}
+		
+		if(!Validator.isValidPrice(price)) {
+			throw new UserException("\n Price must be less than 10,00,00,000.00");
+		}
+		
+		return price;
+	}
+
+	//other
 	protected String getTimeString() throws UserException {
 		Scanner sc = OperationFactory.getScannerInstance();
 

@@ -54,7 +54,6 @@ public class Validator {
 		return true;
 	}
 
-
 	public static boolean isNumeric(char ch) {
 		return (ch >= '0' && ch <= '9');
 	}
@@ -66,6 +65,15 @@ public class Validator {
 			}
 		}
 		return true;
+	}
+
+	public static boolean isValidFloat(String stringValue) {
+		try {
+			Float .parseFloat(stringValue);
+			return true;
+		}catch(NumberFormatException e){
+			return false;
+		}
 	}
 
 	public static boolean isValidComment(String comment) {
@@ -101,7 +109,6 @@ public class Validator {
 		return false;
 	}
 
-
 	public static boolean isValidPhoneNoLength(String contactNo) {
 		if(contactNo.length() == 12 || contactNo.length() == 10) {
 			return true;
@@ -117,51 +124,8 @@ public class Validator {
 		return false;
 	}
 
-	public static boolean isValidBloodGroup(String bloodGroup) {
-
-		List<String> bloodGroups = new ArrayList<String>();
-		bloodGroups.add("APOSITIVE");
-		bloodGroups.add("BPOSITIVE");
-		bloodGroups.add("OPOSITIVE");
-		bloodGroups.add("ABPOSITIVE");
-		bloodGroups.add("ANEGATIVE");
-		bloodGroups.add("BNEGATIVE");
-		bloodGroups.add("ONEGATIVE");
-		bloodGroups.add("ABNEGATIVE");
-
-		if( bloodGroups.contains(bloodGroup.trim().toUpperCase())) {
-			return true;
-		}
-		return false;
-	}
-
-
 	public static boolean arePasswordsMatching(String password, String confirmedPassword) {
 		return password.equals(confirmedPassword);
-	}
-
-	public static boolean isValidVehicleNo(String vehicleNo) {
-		if (vehicleNo == null) {
-			return false;
-		}
-
-		String vehicleNoRegex = "^[A-Za-z]{2}-{1}[0-9]{2}[A-Za-z]{1}-{1}[0-9]{4}$";
-
-		Pattern pat = Pattern.compile(vehicleNoRegex);
-
-		return pat.matcher(vehicleNo).matches();
-	}
-
-	public static boolean isValidBusType(int busType) {
-		return busType <= 50;
-	}
-
-	public static boolean isValidStopCount(int stopCount) {
-		return stopCount < 10 && stopCount > 1;
-	}
-
-	public static boolean isValidStopNameLength(String stopName) {
-		return stopName.length() < 100;
 	}
 
 	public static boolean isValidTimeString(String timeString) {
@@ -179,8 +143,13 @@ public class Validator {
 	public static boolean isValidUserIdLength(int userId) {
 		return userId <= 1000000000 && userId >= 99999999;
 	}
+	
 
 	public static boolean isPositive(int number) {
+		return number > 0;
+	}
+	
+	public static boolean isPositive(float number) {
 		return number > 0;
 	}
 
@@ -214,4 +183,42 @@ public class Validator {
 		}
 		return true;
 	}
+
+
+	//Classifieds validator
+	public static boolean isValidProductNameLength(String productName) {
+		if(productName.length() <= 50){
+			return true;
+		}
+		return false;
+	}
+	
+	public static boolean isValidHeadLineLength(String headLine) {
+		if(headLine.length() <= 100){
+			return true;
+		}
+		return false;
+	}
+
+	public static boolean isValidBrandLength(String brand) {
+		if(brand.length() <= 25){
+			return true;
+		}
+		return false;
+	}
+	
+	public static boolean isValidDescriptionLength(String pDescription) {
+		if(pDescription.length() <= 500){
+			return true;
+		}
+		return false;
+	}
+	
+	public static boolean isValidPrice(float price) {
+		if(price <= 100000000.00f){
+			return true;
+		}
+		return false;
+	}
+
 }

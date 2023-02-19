@@ -1,14 +1,17 @@
 package com.amazon.classifieds.operations;
 
+import com.amazon.classifieds.assets.AssetFactory;
+import com.amazon.classifieds.assets.Classified;
 import com.amazon.classifieds.customExceptions.ApplicationException;
 import com.amazon.classifieds.customExceptions.UserException;
+import com.amazon.classifieds.managers.ClassifiedManager;
 import com.amazon.classifieds.managers.UserManager;
 
 @SuppressWarnings("unused")
 public class UserOperation extends BaseOperation{
-	void showMenu(int userId) throws ApplicationException {
+	void showMenu(int userId) {
 		System.out.println("--------------------------------------");
-		System.out.println("-------Welcome User------");
+		System.out.println("------------- Welcome User ------------");
 		System.out.println("--------------------------------------");
 		
 		boolean exitCode = false;
@@ -25,11 +28,21 @@ public class UserOperation extends BaseOperation{
 
 			switch (choice) {
 			case "1":
-				manageProfile(userId);
+				try {
+					manageProfile(userId);
+				} catch (ApplicationException e) {
+					e.printStackTrace();
+				}
 				break;
 
 			case "2":
-				System.out.println("\nPost Classified not implemented yet");
+				try {
+					postClassified(userId);
+				} catch (UserException e) {
+					e.printStackTrace();
+				} catch (ApplicationException e) {
+					e.printStackTrace();
+				}
 				break;
 			case "3":
 				System.out.println("\nView all Classifieds not implemented yet");
@@ -175,5 +188,60 @@ public class UserOperation extends BaseOperation{
 
 		System.out.println("You Name has been updated to : " + name);
 	}
+	
+	private boolean postClassified(int userId) throws UserException, ApplicationException{
+		System.out.println("\n Please Enter Classified Details Below :");
+		
+		System.out.println("\n Product Name: ");
+		String productName = this.getProductName();
+		
+		System.out.println("\n Product HeadLine: ");
+		String headLine = this.getHeadLine();
+		
+		System.out.println("\n Brand of Product: ");
+		String brand = this.getBrand();
+		
+		System.out.println("Select Product Condition: ");
+		int pCondition = this.getpCondition();
+		
+		System.out.println("\n Description of Product: ");
+		String pDescription = this.getpDescription();
+		
+		System.out.println("\n Enter the price of Product: ");
+		float price = this.getPrice();
+		
+		String cStatus="Pending Approval";
+		
+		Classified newClassified = AssetFactory.getInstance().getClassifiedInstance(userId, cStatus, productName, headLine, brand, pCondition, pDescription, price);
+		
+	    ClassifiedManager.getInstance().create(newClassified);
+	    
+	    System.out.println("Classified Created Successfully with id: "+newClassified.getUserId());
+	    System.out.println("The classified is sent to Admin Approval");
+		
+		return true;
+	}
+	
+	/*
+	private boolean addBus() throws ApplicationException, UserException {
+		System.out.println("\nPlease Enter New Bus Details Below :");
+
+		System.out.println("\nVehicle Number:");
+		String vehicleNo = this.getVehicleNo();
+
+		System.out.println("\nBus Type [Capacity/Number of Seats]\n");
+		int busType = this.getBusType();
+
+		Bus newBus = AssetFactory.getInstance().getBusInstance(busType, busType, vehicleNo);
+
+		BusManager.getInstance().create(newBus);
+
+		System.out.println("\nYour new Bus with the below details has been created:");
+		System.out.println("\nBus ID: " + newBus.getBusId() +
+				" Bus Type: " + newBus.getBusType()
+				+ " Vehicle No: " + newBus.getVehicleNo());
+
+		return true;
+	}*/
 
 }

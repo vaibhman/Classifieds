@@ -11,18 +11,22 @@ CREATE TABLE user(
 );
 
 CREATE TABLE Classifieds (
-  classifiedId INT PRIMARY KEY,
-  userId INT NOT NULL,
-  cStatus VARCHAR(20),
-  productName VARCHAR(50),
-  headLine VARCHAR(100),
-  brand VARCHAR(25),
-  pCondition INT,
-  pDescription VARCHAR(500),
-  price FLOAT(8,2),
-  FOREIGN KEY (userId) REFERENCES user(userId)
+	classifiedId INT PRIMARY KEY,
+	userId INT NOT NULL,
+	cStatus VARCHAR(20),
+	productName VARCHAR(50),
+	headLine VARCHAR(100),
+	brand VARCHAR(25),
+	pCondition INT,
+	pDescription VARCHAR(500),
+	price FLOAT(11,2),
+	FOREIGN KEY (userId) REFERENCES user(userId)
 );
 
+CREATE TABLE idgenerator(
+	objectname VARCHAR(40), 
+	latestid INT
+);
 
 
 #Create_values
