@@ -268,8 +268,7 @@ public class BaseOperation {
 		}
 		return amount;
 	}
-	
-	
+
 	//Classified parameters
 	protected int getClassifiedId() throws UserException {
 		

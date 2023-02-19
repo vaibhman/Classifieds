@@ -1,5 +1,7 @@
 package com.amazon.classifieds.managers;
 
+import java.sql.SQLException;
+
 import com.amazon.classifieds.assets.Classified;
 import com.amazon.classifieds.customExceptions.ApplicationException;
 import com.amazon.classifieds.queryHelper.QueryBuilder;
@@ -131,6 +133,38 @@ public class ClassifiedManager extends BaseManager{
 		  
 	  }
 	  
-	   
+	  public boolean isClassifiedApproved(int classifiedId) throws ApplicationException {
+			QueryBuilder queryBuilder = this.getSelectInstance()
+					.selectColumns("classifiedId")
+					.onTable("classifieds")
+					.whereEq("classifiedId", classifiedId)
+					.whereEq("cStatus", "Approved");
+			String sqlQuery = this.buildQuery(queryBuilder);
 
+		  return this.hasResult(sqlQuery);
+	  }
+
+	  public int getSellerId(int classifiedId) throws ClassNotFoundException, SQLException, ApplicationException {	
+
+		  QueryBuilder queryBuilder = this.getSelectInstance()
+				  .selectColumns("userId")
+				  .onTable("classifieds")
+				  .whereEq("classifiedId", classifiedId);
+
+		  String sqlQuery = this.buildQuery(queryBuilder);
+
+		  return this.getQueryNumber(sqlQuery);
+	  }
+
+	  public float getPrice(int classifiedId) throws ClassNotFoundException, SQLException, ApplicationException {	
+
+		  QueryBuilder queryBuilder = this.getSelectInstance()
+				  .selectColumns("price")
+				  .onTable("classifieds")
+				  .whereEq("classifiedId", classifiedId);
+
+		  String sqlQuery = this.buildQuery(queryBuilder);
+		  
+		  return this.getQueryNumberFloat(sqlQuery);
+	  }
 }

@@ -107,13 +107,19 @@ public class UserManager extends BaseManager {
 	    
 		return true;
 	}
+	
 	public boolean addMoneytoWallet(int userId, float walletBalance) throws ClassNotFoundException, SQLException, ApplicationException {
 		System.out.println("Enter Amount: ");
 		float amount = this.getWalletBalance(userId); 
+		
 		System.out.println("Enter upi id: ");
+		@SuppressWarnings("unused")
 		String upiId = OperationFactory.getScannerInstance().next(); 
+		
 		System.out.println("Enter password: ");
+		@SuppressWarnings("unused")
 		String pass = OperationFactory.getScannerInstance().next(); 
+		
 		float newValue = walletBalance+amount;
 
 		return UserManager
@@ -128,6 +134,7 @@ public class UserManager extends BaseManager {
 			throw new UserException("\n Can't withdraw more that Wallet balance");
 		}
 		System.out.println("Enter Bank Account No. : ");
+		@SuppressWarnings("unused")
 		String bankNo = OperationFactory.getScannerInstance().next(); 
 
 		float newValue = walletBalance-amount;

@@ -29,6 +29,7 @@ public class UserOperation extends BaseOperation{
 							+ "\n2. Post a Classified"
 							+ "\n3. View Classifieds" //Only approved classified will be visible
 							+ "\n4. Go to Wallet"
+							+ "\n5. Buy Product"
 							+ "\n0. Exit \n");
 
 			String choice = OperationFactory.getScannerInstance().next();
@@ -38,6 +39,7 @@ public class UserOperation extends BaseOperation{
 				try {
 					manageProfile(userId);
 				} catch (ApplicationException e) {
+					System.out.println("Something Went Wrong...");
 					e.printStackTrace();
 				}
 				break;
@@ -46,8 +48,10 @@ public class UserOperation extends BaseOperation{
 				try {
 					postClassified(userId);
 				} catch (UserException e) {
+					System.out.println("Something Went Wrong...");
 					e.printStackTrace();
 				} catch (ApplicationException e) {
+					System.out.println("Something Went Wrong...");
 					e.printStackTrace();
 				}
 				break;
@@ -56,6 +60,7 @@ public class UserOperation extends BaseOperation{
 				try {
 					viewClassifieds();
 				} catch (ApplicationException e) {
+					System.out.println("Something Went Wrong...");
 					e.printStackTrace();
 				}
 				break;
@@ -64,9 +69,20 @@ public class UserOperation extends BaseOperation{
 				try {
 					viewWallet(userId);
 				} catch (ClassNotFoundException | SQLException | ApplicationException e) {
+					System.out.println("Something Went Wrong...");
 					e.printStackTrace();
 				}
 				break;
+				
+			case "5":
+		
+				try {
+					buyProduct(userId);
+				} catch (ClassNotFoundException | ApplicationException | UserException | SQLException e) {
+					System.out.println("Something Went Wrong...");
+					e.printStackTrace();
+				}
+
 				
 			case "0":
 				exitCode = true;
@@ -80,6 +96,45 @@ public class UserOperation extends BaseOperation{
 		System.out.println("Thank You For Using our Employee Internal Classifieds Application\n");
 	}
 	
+
+	private boolean buyProduct(int userId) throws ApplicationException, UserException, ClassNotFoundException, SQLException {
+		
+		System.out.println("For your referrence...");
+		
+		viewClassifieds();
+		
+		System.out.println("Enter Classified ID to purchase...");
+		int classifiedId= this.getClassifiedId();
+		
+		if(!ClassifiedManager.getInstance().isClassifiedApproved(classifiedId)) {
+			throw new UserException(" Invalid Classified ID Entered.");
+		}
+		
+		float productPrice = ClassifiedManager.getInstance().getPrice(classifiedId);
+		
+		float userBalance= UserManager.getInstance().getWalletBalance(userId);
+		
+		if(userBalance < productPrice) {
+			System.out.println("Not Enough Wallet Balance ");
+			System.out.println("Please add money to your wallet");
+			return false;
+		}
+	
+		int sellerId = ClassifiedManager.getInstance().getSellerId(classifiedId);
+		
+		float sellerBalance = UserManager.getInstance().getWalletBalance(sellerId);
+		
+		UserManager.getInstance().setWalletBalance(userId, sellerBalance-productPrice);
+		
+		UserManager.getInstance().setWalletBalance(sellerId, userBalance+productPrice);
+		
+		ClassifiedManager.getInstance().update(classifiedId, "cStatus", "Sold");
+		
+		System.out.println("Product Purchased Successfully!!!");
+		
+		return true;
+	}
+
 
 	private void viewWallet(int userId) throws ClassNotFoundException, SQLException, ApplicationException {
 
