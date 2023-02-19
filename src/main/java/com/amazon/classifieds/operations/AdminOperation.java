@@ -78,10 +78,8 @@ public class AdminOperation extends BaseOperation{
 					try {
 						changeClassifiedStatus("Approved");
 					} catch (ApplicationException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					} catch (UserException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 					break;
@@ -90,10 +88,8 @@ public class AdminOperation extends BaseOperation{
 					try {
 						changeClassifiedStatus("Rejected");
 					} catch (ApplicationException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					} catch (UserException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 					break;
@@ -227,7 +223,7 @@ public class AdminOperation extends BaseOperation{
 	}
 
 	private boolean activateUser() throws ApplicationException{
-		System.out.println("Activate user code");
+
 		System.out.println("Enter User Id (9 digit): ");
 		int userId = OperationFactory.getScannerInstance().nextInt();
 		UserManager
@@ -240,7 +236,7 @@ public class AdminOperation extends BaseOperation{
 	}
 	
 	private boolean deActivateUser() throws ApplicationException{
-		System.out.println("Activate user code");
+
 		System.out.println("Enter User Id (9 digit): ");
 		int userId = OperationFactory.getScannerInstance().nextInt();
 		UserManager
