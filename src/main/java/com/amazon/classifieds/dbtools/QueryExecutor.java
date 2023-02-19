@@ -48,22 +48,26 @@ public class QueryExecutor {
 
 		ResultSet resultSet = statement.executeQuery(sqlQuery);
 
-		for (String field : headers) {
-			System.out.print(field + "\t\t");
-		}
-
+		/*
+		System.out.println("1");
 		if (!resultSet.next()) {
 			System.out.println("No records found");
 			return false;
 		}
-
+		System.out.println("2");
 		resultSet.previous();
+		System.out.println("3");*/
+		
+		for (String field : headers) {
+			System.out.print(field + "\t\t");
+		}
 
+		
 		while (resultSet.next()) {
 			System.out.println();
 
 			for (int i = 1; i <= headers.length; i++) {
-				System.out.print(resultSet.getString(i) + "\t\t\t\t\t");
+				System.out.print(resultSet.getString(i) + "\t\t");
 			}
 		}
 		System.out.println();

@@ -6,10 +6,13 @@ import com.amazon.classifieds.customExceptions.ApplicationException;
 import com.amazon.classifieds.customExceptions.UserException;
 import com.amazon.classifieds.managers.ClassifiedManager;
 import com.amazon.classifieds.managers.UserManager;
+import com.amazon.classifieds.queryHelper.QueryBuilder;
 
 @SuppressWarnings("unused")
 public class UserOperation extends BaseOperation{
-	void showMenu(int userId) {
+	void showMenu(int userId) throws ApplicationException {
+		
+		
 		System.out.println("--------------------------------------");
 		System.out.println("------------- Welcome User ------------");
 		System.out.println("--------------------------------------");
@@ -44,9 +47,15 @@ public class UserOperation extends BaseOperation{
 					e.printStackTrace();
 				}
 				break;
+				
 			case "3":
-				System.out.println("\nView all Classifieds not implemented yet");
+				try {
+					viewAllClassifieds();
+				} catch (ApplicationException e) {
+					e.printStackTrace();
+				}
 				break;
+				
 			case "0":
 				exitCode = true;
 				break;
@@ -59,6 +68,14 @@ public class UserOperation extends BaseOperation{
 		System.out.println("Thank You For Using our Employee Internal Classifieds Application\n");
 	}
 	
+
+	private boolean viewAllClassifieds() throws ApplicationException{
+		ClassifiedManager
+			.getInstance()
+			.viewAllClassifieds();
+		return true;
+	}
+
 
 	private boolean manageProfile(int userId) throws ApplicationException {
 		boolean exCode = false;
@@ -222,26 +239,4 @@ public class UserOperation extends BaseOperation{
 		return true;
 	}
 	
-	/*
-	private boolean addBus() throws ApplicationException, UserException {
-		System.out.println("\nPlease Enter New Bus Details Below :");
-
-		System.out.println("\nVehicle Number:");
-		String vehicleNo = this.getVehicleNo();
-
-		System.out.println("\nBus Type [Capacity/Number of Seats]\n");
-		int busType = this.getBusType();
-
-		Bus newBus = AssetFactory.getInstance().getBusInstance(busType, busType, vehicleNo);
-
-		BusManager.getInstance().create(newBus);
-
-		System.out.println("\nYour new Bus with the below details has been created:");
-		System.out.println("\nBus ID: " + newBus.getBusId() +
-				" Bus Type: " + newBus.getBusType()
-				+ " Vehicle No: " + newBus.getVehicleNo());
-
-		return true;
-	}*/
-
 }

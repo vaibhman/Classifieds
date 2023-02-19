@@ -65,4 +65,26 @@ public class ClassifiedManager extends BaseManager{
 
 		  this.executeQuery(sqlQuery);
 	  }
+	  
+	  public boolean viewAllClassifieds() throws ApplicationException {
+			String[] columns = {"classifiedId", "userId", "productName", "headLine", "brand", "pCondition", "pDescription","price"};
+
+			QueryBuilder queryBuilder = this.getSelectInstance()
+					.selectColumns(columns)
+					.onTable("classifieds");
+
+			String sqlQuery = this.buildQuery(queryBuilder);
+			
+			System.out.println(sqlQuery);
+
+			if (!this.hasResult(sqlQuery)) {
+				System.out.println("No Classifieds Found");
+				return false;
+			}
+
+			String[] headers = {"CLASSIFIED ID", "POSTED BY", "PRODUCT NAME", "HEADLINE", "BRAND", "CONDITION", "DESCRIPTION", "PRICE"};
+			this.executeQuery(sqlQuery, headers);
+
+			return true;
+	  }
 }

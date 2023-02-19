@@ -108,8 +108,8 @@ public class BaseManager {
 	protected void executeQuery(String sqlQuery, String[] fields) throws ApplicationException {
 		try {
 			QueryExecutor
-			.getInstance()
-			.executeSQL(sqlQuery, fields);
+				.getInstance()
+				.executeSQL(sqlQuery, fields);
 		} catch (SQLException e) {
 			throw new ApplicationException("SQL exception");
 		} catch (ClassNotFoundException e) {
