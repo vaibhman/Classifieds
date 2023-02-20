@@ -1,0 +1,3 @@
+jdbc:mysql://localhost:3306/classifiedsdb?serverTimezone=UTC
+root
+password

@@ -17,7 +17,7 @@ import java.sql.SQLException;
 public class ConnectionManager {
 
 	private static Connection con;
-	public static String FILEPATH="C:/Users/vaibh/eclipse-workspace/classifieds/dbconfig.txt";
+	public static String FILEPATH="G:/Vaibhav/Work/Amazon/ATLAS/ATLAS files/End Projects/End Projects Classified/classifieds/dbconfig.txt";
 	public static String URL="jdbc:mysql://localhost:3306/classifiedsdb?serverTimezone=UTC";
 	public static String USER="root";
 	public static String PASSWORD="password";
