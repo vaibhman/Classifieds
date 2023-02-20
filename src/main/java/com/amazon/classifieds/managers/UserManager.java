@@ -108,7 +108,7 @@ public class UserManager extends BaseManager {
 		return true;
 	}
 	
-	public boolean addMoneytoWallet(int userId, float walletBalance) throws ClassNotFoundException, SQLException, ApplicationException {
+	public boolean addMoneytoWallet(int userId, float walletBalance) throws ClassNotFoundException, SQLException, ApplicationException, UserException {
 		System.out.println("Enter Amount: ");
 		float amount = this.getAmountInput(); 
 		

@@ -10,10 +10,6 @@ public class App
 {
 	public static void main( String[] args )
 	{
-		System.out.println( "************************************************" );
-		System.out.println( "Welcome to Amazon Internal  Classified App" );
-		System.out.println( "************************************************" );
-		
 		if(args.length>0) {
 			ConnectionManager.FILEPATH=args[0];
 		}
@@ -24,6 +20,12 @@ public class App
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
+		System.out.println( "************************************************" );
+		System.out.println( "Welcome to Amazon Internal  Classified App" );
+		System.out.println( "************************************************" );
+		
 		AppDriver appDriver= new AppDriver();
 		appDriver.initiate();
 

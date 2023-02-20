@@ -153,7 +153,7 @@ public class UserOperation extends BaseOperation{
 				case "1":
 					try {
 						UserManager.getInstance().addMoneytoWallet(userId, walletBalance);
-					} catch (ClassNotFoundException | SQLException | ApplicationException e) {
+					} catch (ClassNotFoundException | SQLException | ApplicationException | UserException e) {
 						System.out.println("Something Went Wrong...");
 						e.printStackTrace();
 					}
