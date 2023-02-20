@@ -35,7 +35,7 @@ public class ConnectionManager {
 				PASSWORD= buffer.readLine();
 				buffer.close();
 				reader.close();
-				System.out.println("[DB] configured using files");
+				//System.out.println("[DB] configured using files");
 			}
 		}catch(Exception e){
 			System.err.println("FILEPATH argument Error: "+e);
@@ -46,7 +46,7 @@ public class ConnectionManager {
 
 			con = DriverManager.getConnection(URL, USER, PASSWORD);
 			
-			System.out.println("Database Connected");
+			//System.out.println("Database Connected");
 			return con;
 		} catch (Exception e) {
 			System.out.println("Connection Issue Found");

@@ -90,7 +90,7 @@ public class UserManager extends BaseManager {
 	              .whereEq("userId", userId);
 		
 		String sqlQuery = this.buildQuery(queryBuilder);
-		System.out.println(sqlQuery);
+
 		return this.getQueryNumberFloat(sqlQuery);
 	}
 	
