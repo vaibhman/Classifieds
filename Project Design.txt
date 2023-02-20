@@ -5,8 +5,12 @@ OOPS-> Identify Objects and Attributes
 		userId; name; email; contactNo; password; walletBalance;
 	Classified
 		classifiedId; userId, status; productName; headLine; brand; condition; description; price;
+			pCondition	->	1.Brand New, 2.Lightly Used, 3.Moderately Used,4. Heavily Used, 5.Damaged/Dented, 6. Not Working
+	Report
+		totalUser; activeUsers; deActivatedUser; totalClassifieds; pendingClassifieds; 
+		approvedClassifieds; rejectedClassifieds; averageProductPrice;
 		 
 Relationships
 	User has classifieds	|	1 to many
-		
+	classified has User		|	1 to 1
 	

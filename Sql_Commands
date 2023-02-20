@@ -1,3 +1,5 @@
+#Create_database
+CREATE DATABASE classifiedsDB;
 
 #Create_tables
 CREATE TABLE user(
@@ -6,11 +8,11 @@ CREATE TABLE user(
 	email VARCHAR(50), 
 	contactNo VARCHAR(12), 
 	password VARCHAR(50), 
-	walletBalance FLOAT(8,2), 
+	walletBalance FLOAT(11,2), 
 	isActive VARCHAR(5)
 );
 
-CREATE TABLE Classifieds (
+CREATE TABLE classifieds (
 	classifiedId INT PRIMARY KEY,
 	userId INT NOT NULL,
 	cStatus VARCHAR(20),
@@ -31,7 +33,20 @@ CREATE TABLE idgenerator(
 
 #Create_values
 INSERT INTO user (userId,name,email,contactNo, password, walletBalance, isActive)
-VALUES(999999999,'Vinod Mahajan','vima@amazon.com','9876787896','vino1234', 1567.33,'true');
-
+VALUES(111111111,'ADMIN','admin@amazon.com','9856462378','ADMIN', 0,'true');
 INSERT INTO user (userId,name,email,contactNo, password, walletBalance, isActive)
-VALUES(999999998,'Bikash Kumar','bkuma@gmail.com','919008795029','bika1234', 2000,'true');
+VALUES(999999999,'Vinod Mahajan','vima@amazon.com','9876787896','vino1234', 1567.33,'true');
+INSERT INTO user (userId,name,email,contactNo, password, walletBalance, isActive)
+VALUES(999999998,'Bikash Kumar','bika@gmail.com','919008795029','bika1234', 2000,'true');
+INSERT INTO user (userId,name,email,contactNo, password, walletBalance, isActive)
+VALUES(999999997,'Vijay Malya','vija@gmail.com','8648521564','vija1234', 5000,'false');
+
+
+INSERT INTO classifieds (classifiedId, userId, cStatus, productName, headLine, brand, pCondition, pDescription, price)
+VALUES(1, 999999999, 'Approved', 'Samsung S20', 'Brand new phone', 'Samsung', 1, '8 GB RAM/ 128 GB Storage',30000);
+INSERT INTO classifieds (classifiedId, userId, cStatus, productName, headLine, brand, pCondition, pDescription, price)
+VALUES(2, 999999999, 'Pending Approval', 'Mi TV', 'want to sell tv', 'Xiomi', 3, '32 inch smart tv 1 GB RAM, 8 GB Storage',8500);
+INSERT INTO classifieds (classifiedId, userId, cStatus, productName, headLine, brand, pCondition, pDescription, price)
+VALUES(3, 999999998, 'Pending Approval', 'Suzuki Access', '2013 model', 'Suzuki', 4, 'Bought in 2013, smoothly running',22700);
+
+INSERT INTO idgenerator(objectname,latestid) VALUES('classified',4);

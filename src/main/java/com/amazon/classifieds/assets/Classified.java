@@ -1,7 +1,7 @@
 package com.amazon.classifieds.assets;
 
 /**
- * The class Bus acts as a POJO which holds entity details for a Classified.
+ * The class Classified acts as a POJO which holds entity details for a Classified.
  * It supports retrieval and storage of Classified details. It is used in Upper Layer-to-Middle
  *  Layer/Operations package-to-Managers package data transmission.
  * About attributes :

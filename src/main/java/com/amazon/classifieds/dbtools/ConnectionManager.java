@@ -17,8 +17,8 @@ import java.sql.SQLException;
 public class ConnectionManager {
 
 	private static Connection con;
-	public static String FILEPATH="/Users/vaibh/eclipse-workspace/classifieds/src/main/java/dbconfig.txt";
-	public static String URL="jdbc:mysql://localhost:3306/classifieds_db?serverTimezone=UTC";
+	public static String FILEPATH="C:/Users/vaibh/eclipse-workspace/classifieds/dbconfig.txt";
+	public static String URL="jdbc:mysql://localhost:3306/classifiedsdb?serverTimezone=UTC";
 	public static String USER="root";
 	public static String PASSWORD="password";
 
@@ -45,6 +45,8 @@ public class ConnectionManager {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
 			con = DriverManager.getConnection(URL, USER, PASSWORD);
+			
+			System.out.println("Database Connected");
 			return con;
 		} catch (Exception e) {
 			System.out.println("Connection Issue Found");
