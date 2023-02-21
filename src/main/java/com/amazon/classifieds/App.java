@@ -19,23 +19,9 @@ public class App
 		try {
 			ConnectionManager.getConnection();
 		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
+			System.out.println("Connection Issue..");
 			e.printStackTrace();
-		}
-		
-		
-		try {
-			try {
-				ClassifiedManager.getInstance().viewAllClassifieds();
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} catch (ApplicationException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		}	
 		
 		System.out.println( "************************************************" );
 		System.out.println( "Welcome to Amazon Internal  Classified App" );
