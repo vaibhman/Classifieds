@@ -210,7 +210,8 @@ public class AdminOperation extends BaseOperation{
 	}
 
 	private boolean changeClassifiedStatus(String newSatus) throws ApplicationException, UserException {
-	    
+		System.out.println("____________________________________");
+
 		System.out.println("Enter Id of classified");
 
 		int classifiedId = this.getClassifiedId();
@@ -225,7 +226,9 @@ public class AdminOperation extends BaseOperation{
 		ClassifiedManager
 	            .getInstance()
 	            .update(classifiedId, "cStatus", newSatus);
-	
+		
+		System.out.println("____________________________________");
+
 		return true;
 	}
 
@@ -297,6 +300,8 @@ public class AdminOperation extends BaseOperation{
 			}
 		}
 		System.out.println("Returning to Admin Menu");
+		System.out.println("____________________________________");
+
 	}
 
 	private boolean activateUser() throws ApplicationException{
