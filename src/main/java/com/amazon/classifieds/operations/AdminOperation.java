@@ -23,7 +23,7 @@ public class AdminOperation extends BaseOperation{
 								+"\n2. Manage Classifieds"
 								+"\n3. Manage Users"
 								+"\n4. Generate report"
-								+"\n0. Exit \n");
+								+"\n0. Sign Out \n");
 			String choice = OperationFactory.getScannerInstance().next();
 
 			switch (choice) {
@@ -68,6 +68,9 @@ public class AdminOperation extends BaseOperation{
 	}
 
 	private void generateReport() throws ClassNotFoundException, SQLException {
+		
+		System.out.println("\n------------Report-------------");
+
 		int totalUsers = this.getUsersCount();
 		int activeUsers = this.getActiveUsersCount();
 		int deActivatedUser = this.getDeActivatedUsersCount();
@@ -84,6 +87,7 @@ public class AdminOperation extends BaseOperation{
 		System.out.println("Pending Classifieds: \t\t" + pendingClassifieds);
 		System.out.println("Active Classifieds: \t\t" + approvedClassifieds);
 		System.out.println("Rejected Classifieds: \t\t" + rejectedClassifieds);
+		System.out.println("\n-----------------------------------------------\n");
 		
 	}
 
@@ -91,14 +95,15 @@ public class AdminOperation extends BaseOperation{
 		
 		boolean exitCode = false;
 		while(!exitCode) {
-			
+			System.out.println("\n-----------------------------------------------\n");
+
 			System.out.println("\nSelect an Option:");
 			System.out.println("\n1. Approve Classified"
 					+"\n2. Reject Classified"
 					+"\n3. View All Classifieds"
 					+"\n4. View Pending Classifieds"
 					+"\n5. Remove Classified"
-					+"\n0. Exit \n");
+					+"\n0. Return to Previous Menu \n");
 			
 			String choice = OperationFactory.getScannerInstance().next();
 
@@ -185,6 +190,7 @@ public class AdminOperation extends BaseOperation{
 		viewAllClassifieds();
 
 	    System.out.println("\nclassified with ID : " + classifiedIdToRemove + " has been removed!\n");
+		System.out.println("\n-----------------------------------------------\n");
 
 	    return true;
 	}
@@ -254,6 +260,8 @@ public class AdminOperation extends BaseOperation{
 
 		System.out.println("Classified Created Successfully with id: "+newClassified.getClassifiedId());
 		System.out.println("The classified is already Approved");
+		System.out.println("\n-----------------------------------------------\n");
+
 
 		return true;
 	}
@@ -300,7 +308,8 @@ public class AdminOperation extends BaseOperation{
 		.update(userId, "isActive", "true");
 		
 		System.out.println("User Activated for userId: " + userId);
-		
+		System.out.println("\n-----------------------------------------------\n");
+
 		return true;
 	}
 	
@@ -313,7 +322,8 @@ public class AdminOperation extends BaseOperation{
 		.update(userId, "isActive", "false");
 		
 		System.out.println("User De-activated for userId: " + userId);
-		
+		System.out.println("\n-----------------------------------------------\n");
+
 		return true;
 	}
 }

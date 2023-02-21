@@ -33,6 +33,7 @@ public class UserLoginOperation extends BaseOperation {
 		Scanner sc = OperationFactory.getScannerInstance();
 
 		while (!exitCode) {
+			System.out.println("_____________________________________________");
 			System.out.println("\nWelcome to the User Login/Sign-up Page");
 			System.out.println("\n1. Login " +
 					"\n2. Create Account" +
@@ -129,7 +130,7 @@ public class UserLoginOperation extends BaseOperation {
 		}
 		
 		if (UserManager.getInstance().isValidUserPassword(userId, password)) {
-			System.out.println("User Login Successful!");
+			System.out.println("\nUser Login Successful!");
 			OperationFactory.getUserOperationInstance().showMenu(userId); 
 		} else {
 			System.out.println("\nUnable to load account with entered credentials. " +
@@ -140,11 +141,14 @@ public class UserLoginOperation extends BaseOperation {
 
 	private boolean setLoginDetails() throws ApplicationException, UserException {
 		loginTries += 1;
-		System.out.println("\nUser Login \n");
-		System.out.println("Enter Employee ID : \n");
+		
+		System.out.println("_____________________________________________");
+
+		System.out.println("\n------------- User Login Page-------------\n");
+		System.out.println("Enter Employee ID : ");
 		int userId = this.getUserId();
 
-		System.out.println("Enter Password : \n");
+		System.out.println("\nEnter Password : ");
 		String password = this.getPassword();
 
 		if (loginTries > maxLoginTries) {

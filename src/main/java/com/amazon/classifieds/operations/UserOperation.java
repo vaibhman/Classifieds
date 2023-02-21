@@ -30,7 +30,7 @@ public class UserOperation extends BaseOperation{
 							+ "\n3. View Classifieds" //Only approved classified will be visible
 							+ "\n4. Go to Wallet"
 							+ "\n5. Buy Product"
-							+ "\n0. Exit \n");
+							+ "\n0. Sign Out \n");
 
 			String choice = OperationFactory.getScannerInstance().next();
 
@@ -131,7 +131,7 @@ public class UserOperation extends BaseOperation{
 		ClassifiedManager.getInstance().update(classifiedId, "cStatus", "Sold");
 		
 		System.out.println("Product Purchased Successfully!!!");
-		
+		System.out.println("---------------------------------------------");
 		return true;
 	}
 
@@ -142,17 +142,20 @@ public class UserOperation extends BaseOperation{
 
 		while (!exitCode) {
 			float walletBalance= UserManager.getInstance().getWalletBalance(userId);
+			System.out.println("---------------------------------------------");
 			System.out.println("Your Wallet Balance is: "+ walletBalance);
 			System.out.println("1. Add Money to your Wallet \n"
 							+"2. Withdraw Money from your Wallet\n"
-							+"0. Exit");
+							+"0. Return to Previous Menu");
 
 			String choice = OperationFactory.getScannerInstance().next();
 
 			switch (choice) {
 				case "1":
 					try {
-						UserManager.getInstance().addMoneytoWallet(userId, walletBalance);
+						UserManager.getInstance().addMoneytoWallet(userId, walletBalance);						
+						System.out.println("\nMoney Added Successfully!");
+						System.out.println("\n---------------------------------------------\n");
 					} catch (ClassNotFoundException | SQLException | ApplicationException | UserException e) {
 						System.out.println("Something Went Wrong...");
 						e.printStackTrace();
@@ -162,6 +165,8 @@ public class UserOperation extends BaseOperation{
 				case "2":
 					try {
 						UserManager.getInstance().withdrawMoneyFromWallet(userId, walletBalance);
+						System.out.println("\nMoney Withdrawed Successfully!");
+						System.out.println("\n---------------------------------------------\n");
 					} catch (ClassNotFoundException | SQLException | ApplicationException | UserException e) {
 						System.out.println("Something Went Wrong...");
 						e.printStackTrace();
@@ -176,6 +181,7 @@ public class UserOperation extends BaseOperation{
 					System.out.println("Please select valid option.");
 			}
 		}
+		System.out.println("---------------------------------------------");
 	}
 
 
@@ -183,6 +189,7 @@ public class UserOperation extends BaseOperation{
 		ClassifiedManager
 			.getInstance()
 			.viewApprovedClassifieds();
+		System.out.println("---------------------------------------------");
 		return true;
 	}
 
@@ -199,7 +206,7 @@ public class UserOperation extends BaseOperation{
 		System.out.println("\n Brand of Product: ");
 		String brand = this.getBrand();
 		
-		System.out.println("Select Product Condition: ");
+		System.out.println("\nSelect Product Condition: ");
 		int pCondition = this.getpCondition();
 		
 		System.out.println("\n Description of Product: ");
@@ -216,7 +223,7 @@ public class UserOperation extends BaseOperation{
 	    
 	    System.out.println("Classified Created Successfully with id: "+newClassified.getUserId());
 	    System.out.println("The classified is sent to Admin Approval");
-		
+		System.out.println("---------------------------------------------");
 		return true;
 	}
 	
@@ -308,7 +315,7 @@ public class UserOperation extends BaseOperation{
 
 		System.out.println("Your password has been updated. Hereafter, you must log-in using your new " +
 				"password\n");
-
+		System.out.println("---------------------------------------------");
 		return true;
 	}
 
@@ -321,7 +328,7 @@ public class UserOperation extends BaseOperation{
 		.update(userId, "contactno", contactNumber);
 
 		System.out.println("Your Contact Number has been Updated to : " + contactNumber);
-
+		System.out.println("---------------------------------------------");
 		return true;
 	}
 
@@ -334,7 +341,7 @@ public class UserOperation extends BaseOperation{
 		.update(userId, "email", email);
 
 		System.out.println("Your contact E-mail address has been Updated to : " + email);
-
+		System.out.println("---------------------------------------------");
 		return true;
 	}
 
@@ -348,6 +355,7 @@ public class UserOperation extends BaseOperation{
 		.update(userId, "name", name);
 
 		System.out.println("You Name has been updated to : " + name);
+		System.out.println("---------------------------------------------");
 	}
 	
 }

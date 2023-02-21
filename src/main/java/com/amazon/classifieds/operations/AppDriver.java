@@ -11,7 +11,6 @@ public class AppDriver {
 
 		while (!exitCode) {
 
-			loadScreen();
 			System.out.println("\nEnter your User Type :");
 			System.out.println("\n1. Admin \n2. User\n0. Exit \n");
 
@@ -27,8 +26,6 @@ public class AppDriver {
 				break;
 
 			case "2":
-				System.out.println("Welcome User!\n");
-
 				try {
 					OperationFactory.getUserLoginInstance().showMenu();
 				} catch (ApplicationException e) {
@@ -45,9 +42,9 @@ public class AppDriver {
 				System.out.println("Please Enter Valid Option");
 			}
 		}
-
-		System.out.println("Thank You For Using our Employee Internal Classifieds Application\n");
-		loadScreen();
+		System.out.println("\n__________________________________________________________________");
+		System.out.println("\nThank You For Using our Employee Internal Classifieds Application\n");
+		System.out.println("__________________________________________________________________");
 	}
 
 	private void loadScreen(){
@@ -70,7 +67,6 @@ public class AppDriver {
 			}
 			del++;
 		}
-		System.out.print("_~`~");
 		System.out.println("\n---------------------------------------------------------------");
 	}
 }

@@ -8,6 +8,17 @@ import com.amazon.classifieds.customExceptions.UserException;
 import com.amazon.classifieds.operations.OperationFactory;
 import com.amazon.classifieds.queryHelper.QueryBuilder;
 
+/**
+ * The class UserManager is a child class of BaseManager.
+ * It works as a middle layer between the dbTools package/Lower Layer and the Operations
+ * package/Upper Layer.
+ * It contains functions related to User table such as read, create a record, validate data
+ * from table, operation specific functions which require db support, etc.
+ * It is used by the Upper Layers/Operations classes.
+ * It utilizes Lower Layer/dbTools package and helper classes via the parent - BaseManager which
+ * converts system exceptions to ApplicationExceptions.
+ **/
+
 public class UserManager extends BaseManager {
 
 	private static UserManager userManager;
@@ -130,8 +141,10 @@ public class UserManager extends BaseManager {
 	public boolean withdrawMoneyFromWallet(int userId, float walletBalance) throws ClassNotFoundException, SQLException, ApplicationException, UserException {
 		System.out.println("Enter Amount to Withdraw: ");
 		float amount = this.getAmountInput();  
+		
 		if(amount>walletBalance) {
-			throw new UserException("\n Can't withdraw more that Wallet balance");
+			System.out.println("\nCan't withdraw more that Wallet balance\n");
+			return false;
 		}
 		System.out.println("Enter Bank Account No. : ");
 		@SuppressWarnings("unused")
