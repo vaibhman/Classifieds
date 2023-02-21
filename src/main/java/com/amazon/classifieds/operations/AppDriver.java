@@ -1,12 +1,13 @@
 package com.amazon.classifieds.operations;
 
+import java.sql.SQLException;
 import java.util.concurrent.TimeUnit;
 
 import com.amazon.classifieds.customExceptions.*;
 
 @SuppressWarnings("unused")
 public class AppDriver {
-	public void initiate()  {
+	public void initiate() throws ClassNotFoundException, SQLException  {
 		boolean exitCode = false;
 
 		while (!exitCode) {

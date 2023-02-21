@@ -1,5 +1,6 @@
 package com.amazon.classifieds.operations;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 import com.amazon.classifieds.assets.AssetFactory;
@@ -27,7 +28,7 @@ public class UserLoginOperation extends BaseOperation {
 	private final static int maxLoginTries = 5;
 	private static int loginTries = 0;
 
-	public boolean showMenu() throws ApplicationException {
+	public boolean showMenu() throws ApplicationException, ClassNotFoundException, SQLException {
 		boolean exitCode = false;
 		String choice = "";
 		Scanner sc = OperationFactory.getScannerInstance();
@@ -73,7 +74,7 @@ public class UserLoginOperation extends BaseOperation {
 	}
 
 	// Creates a User Account and sends to login page
-	private void createAccount() throws ApplicationException, UserException {
+	private void createAccount() throws ApplicationException, UserException, ClassNotFoundException, SQLException {
 		System.out.println("\nCreate your new User account");
 		System.out.println("\nPlease Enter the below details as prompted and Press Enter to confirm entry." +
 				"\nPress Enter Twice to return to Previous Menu. ");
@@ -122,7 +123,7 @@ public class UserLoginOperation extends BaseOperation {
 	}
 
 	// If the user and password combination exist, redirect to UserOperations
-	private void login(int userId, String password) throws ApplicationException, UserException {
+	private void login(int userId, String password) throws ApplicationException, UserException, ClassNotFoundException, SQLException {
 		if(!UserManager.getInstance().isUserActive(userId)) {
 			System.out.println("Looks like this account was De-activated by Admin!");
 			System.out.println("Please contact Admin to Activate Your Account Again!");
@@ -139,7 +140,7 @@ public class UserLoginOperation extends BaseOperation {
 		}
 	}
 
-	private boolean setLoginDetails() throws ApplicationException, UserException {
+	private boolean setLoginDetails() throws ApplicationException, UserException, ClassNotFoundException, SQLException {
 		loginTries += 1;
 		
 		System.out.println("_____________________________________________");

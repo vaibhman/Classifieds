@@ -70,13 +70,6 @@ public class Classified {
 		return pCondition;
 	}
 	
-	public String getpConditionString(int pCondition) {
-		String[] productConditions = {"", "Brand New", "Lightly Used", "Moderately Used"
-				,"Heavily Used","Damaged/Dented","Not Working"};
-			
-		return productConditions[pCondition];
-	}
-	
 	public String getpDescription() {
 		return pDescription;
 	}

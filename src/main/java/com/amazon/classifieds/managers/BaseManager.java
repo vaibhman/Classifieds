@@ -159,6 +159,19 @@ public class BaseManager {
 			throw new ApplicationException("Class not found");
 		}
 	}
+	
+	// Gets the first String result from a sqlQuery
+	protected String getQueryString(String sqlQuery) throws ApplicationException {
+		try {
+			return QueryExecutor
+					.getInstance()
+					.getQueryString(sqlQuery);
+		} catch (SQLException e) {
+			throw new ApplicationException("SQL exception");
+		} catch (ClassNotFoundException e) {
+			throw new ApplicationException("Class not found");
+		}
+	}
 
 	// Gets next Integer in a ResultSet for given columnIndex
 	protected int getInt(ResultSet resultSet, int columnIndex) throws ApplicationException {

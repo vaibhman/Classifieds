@@ -1,5 +1,7 @@
 package com.amazon.classifieds.operations;
 
+import java.sql.SQLException;
+
 import com.amazon.classifieds.assets.Admin;
 import com.amazon.classifieds.customExceptions.ApplicationException;
 import com.amazon.classifieds.customExceptions.UserException;
@@ -32,7 +34,7 @@ public class AdminLoginOperation extends BaseOperation {
     return adminLogin;
   }
 
-  public void showMenu() throws ApplicationException {
+  public void showMenu() throws ApplicationException, ClassNotFoundException, SQLException {
     try {
       setLoginDetails();
     } catch (UserException e) {
@@ -40,7 +42,7 @@ public class AdminLoginOperation extends BaseOperation {
     }
   }
 
-  private void login(String adminId, String password) throws ApplicationException, UserException {
+  private void login(String adminId, String password) throws ApplicationException, UserException, ClassNotFoundException, SQLException {
     if(adminId.trim().equals(this.adminID) && password.equals(this.password)) {
       System.out.println("\nAdmin Login Successful!");
       OperationFactory.getAdminOperationInstance().showMenu();
@@ -51,7 +53,7 @@ public class AdminLoginOperation extends BaseOperation {
   }
 
   // Gets Admin credentials from console
-  private boolean setLoginDetails() throws UserException, ApplicationException {
+  private boolean setLoginDetails() throws UserException, ApplicationException, ClassNotFoundException, SQLException {
     System.out.println("\n ------Admin Login ------");
     loginTries += 1;
 

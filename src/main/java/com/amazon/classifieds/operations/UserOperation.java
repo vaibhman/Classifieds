@@ -13,7 +13,7 @@ import com.amazon.classifieds.queryHelper.QueryBuilder;
 @SuppressWarnings("unused")
 public class UserOperation extends BaseOperation{
 	
-	void showMenu(int userId) throws ApplicationException {
+	void showMenu(int userId) throws ApplicationException, ClassNotFoundException, SQLException {
 		
 		
 		System.out.println("--------------------------------------");
@@ -185,7 +185,7 @@ public class UserOperation extends BaseOperation{
 	}
 
 
-	private boolean viewClassifieds() throws ApplicationException{
+	private boolean viewClassifieds() throws ApplicationException, ClassNotFoundException, SQLException{
 		ClassifiedManager
 			.getInstance()
 			.viewApprovedClassifieds();

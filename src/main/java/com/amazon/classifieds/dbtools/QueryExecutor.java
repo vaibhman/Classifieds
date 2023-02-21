@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+
 /**
  * The class QueryExecutor is a Singleton implementation which controls single-point execution of
  * SQL Queries received from Middle Layer by utilising a connection object from ConnectionManager.
@@ -111,6 +112,19 @@ public class QueryExecutor {
 			return resultSet.getFloat(1);
 		}
 		return -1;
+	}
+	
+	// Returns first single field String value for a sqlQuery. For single field reads in certain scenarios.
+	public String getQueryString(String sqlQuery) throws SQLException, ClassNotFoundException {
+		Connection conn = ConnectionManager.getConnection();
+		Statement statement = conn.createStatement();
+
+		ResultSet resultSet = statement.executeQuery(sqlQuery);
+
+		if (resultSet.next()) {
+			return resultSet.getString(1);
+		}
+		return "";
 	}
 
 	// Returns ResultSet object for a sqlQuery. For reads or validations in Middle Layers.

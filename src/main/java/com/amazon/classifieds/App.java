@@ -4,11 +4,13 @@ import com.amazon.classifieds.operations.AppDriver;
 
 import java.sql.SQLException;
 
+import com.amazon.classifieds.customExceptions.ApplicationException;
 import com.amazon.classifieds.dbtools.ConnectionManager;
+import com.amazon.classifieds.managers.ClassifiedManager;
 
 public class App 
 {
-	public static void main( String[] args )
+	public static void main( String[] args ) throws ClassNotFoundException, SQLException
 	{
 		if(args.length>0) {
 			ConnectionManager.FILEPATH=args[0];
@@ -17,6 +19,19 @@ public class App
 		try {
 			ConnectionManager.getConnection();
 		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		try {
+			try {
+				ClassifiedManager.getInstance().viewAllClassifieds();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} catch (ApplicationException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

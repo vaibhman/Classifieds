@@ -11,7 +11,7 @@ import com.amazon.classifieds.managers.UserManager;
 
 public class AdminOperation extends BaseOperation{
 	
-	public boolean showMenu() throws ApplicationException{
+	public boolean showMenu() throws ApplicationException, ClassNotFoundException, SQLException{
 		System.out.println("--------------------------------------");
 		System.out.println("--------Welcome Administrator--------");
 		System.out.println("--------------------------------------");
@@ -67,31 +67,44 @@ public class AdminOperation extends BaseOperation{
 		return true;
 	}
 
-	private void generateReport() throws ClassNotFoundException, SQLException {
-		
-		System.out.println("\n------------Report-------------");
+	private boolean postClassified() throws UserException, ApplicationException {
+		System.out.println("\n Please Enter Classified Details Below :");
 
-		int totalUsers = this.getUsersCount();
-		int activeUsers = this.getActiveUsersCount();
-		int deActivatedUser = this.getDeActivatedUsersCount();
-		int totalClassifieds = this.getClassifiedsCount();
-		int pendingClassifieds = this.getPendingClassifiedsCount();
-		int approvedClassifieds = this.getApprovedClassifiedsCount();
-		int rejectedClassifieds = this.getRejectedClassifiedsCount();
+		System.out.println("\n Product Name: ");
+		String productName = this.getProductName();
+
+		System.out.println("\n Product HeadLine: ");
+		String headLine = this.getHeadLine();
+
+		System.out.println("\n Brand of Product: ");
+		String brand = this.getBrand();
+
+		System.out.println("Select Product Condition: ");
+		int pCondition = this.getpCondition();
+
+		System.out.println("\n Description of Product: ");
+		String pDescription = this.getpDescription();
+
+		System.out.println("\n Enter the price of Product: ");
+		float price = this.getPrice();
+
+		String cStatus="Approved";
 		
+		int userId= 111111111;
+
+		Classified newClassified = AssetFactory.getInstance().getClassifiedInstance(userId, cStatus, productName, headLine, brand, pCondition, pDescription, price);
 		
-		System.out.println("Total Number of Users: \t\t" + totalUsers);
-		System.out.println("Active Users: \t\t\t" + activeUsers);
-		System.out.println("De-activated Users: \t\t" + deActivatedUser);
-		System.out.println("Total Number of Classifieds: \t" + totalClassifieds);		
-		System.out.println("Pending Classifieds: \t\t" + pendingClassifieds);
-		System.out.println("Active Classifieds: \t\t" + approvedClassifieds);
-		System.out.println("Rejected Classifieds: \t\t" + rejectedClassifieds);
+		ClassifiedManager.getInstance().create(newClassified);
+
+		System.out.println("Classified Created Successfully with id: "+newClassified.getClassifiedId());
+		System.out.println("The classified is already Approved");
 		System.out.println("\n-----------------------------------------------\n");
-		
-	}
 
-	private void manageClassified() throws ApplicationException {
+
+		return true;
+	}
+	
+	private void manageClassified() throws ApplicationException, ClassNotFoundException, SQLException {
 		
 		boolean exitCode = false;
 		while(!exitCode) {
@@ -169,7 +182,7 @@ public class AdminOperation extends BaseOperation{
 		
 	}
 	
-	private boolean removeClassified() throws ApplicationException, UserException {
+	private boolean removeClassified() throws ApplicationException, UserException, ClassNotFoundException, SQLException {
 		System.out.println("For your reference,");
 		viewAllClassifieds();
 	    System.out.println("\nPlease enter Classified Id to remove : \n");
@@ -195,14 +208,14 @@ public class AdminOperation extends BaseOperation{
 	    return true;
 	}
 
-	private boolean viewPendingClassifieds() throws ApplicationException{
+	private boolean viewPendingClassifieds() throws ApplicationException, ClassNotFoundException, SQLException{
 		ClassifiedManager
 		.getInstance()
 		.viewPendingClassifieds();
 		return true;
 	}
 	
-	private boolean viewAllClassifieds() throws ApplicationException{
+	private boolean viewAllClassifieds() throws ApplicationException, ClassNotFoundException, SQLException{
 		ClassifiedManager
 			.getInstance()
 			.viewAllClassifieds();
@@ -232,43 +245,7 @@ public class AdminOperation extends BaseOperation{
 		return true;
 	}
 
-	private boolean postClassified() throws UserException, ApplicationException {
-		System.out.println("\n Please Enter Classified Details Below :");
 
-		System.out.println("\n Product Name: ");
-		String productName = this.getProductName();
-
-		System.out.println("\n Product HeadLine: ");
-		String headLine = this.getHeadLine();
-
-		System.out.println("\n Brand of Product: ");
-		String brand = this.getBrand();
-
-		System.out.println("Select Product Condition: ");
-		int pCondition = this.getpCondition();
-
-		System.out.println("\n Description of Product: ");
-		String pDescription = this.getpDescription();
-
-		System.out.println("\n Enter the price of Product: ");
-		float price = this.getPrice();
-
-		String cStatus="Approved";
-		
-		int userId= 111111111;
-
-		Classified newClassified = AssetFactory.getInstance().getClassifiedInstance(userId, cStatus, productName, headLine, brand, pCondition, pDescription, price);
-		
-		ClassifiedManager.getInstance().create(newClassified);
-
-		System.out.println("Classified Created Successfully with id: "+newClassified.getClassifiedId());
-		System.out.println("The classified is already Approved");
-		System.out.println("\n-----------------------------------------------\n");
-
-
-		return true;
-	}
-	
 	private void manageUsers() {
 		boolean excode=false;
 		while(!excode) {
@@ -331,4 +308,29 @@ public class AdminOperation extends BaseOperation{
 
 		return true;
 	}
+
+	private void generateReport() throws ClassNotFoundException, SQLException {
+		
+		System.out.println("\n------------Report-------------");
+
+		int totalUsers = this.getUsersCount();
+		int activeUsers = this.getActiveUsersCount();
+		int deActivatedUser = this.getDeActivatedUsersCount();
+		int totalClassifieds = this.getClassifiedsCount();
+		int pendingClassifieds = this.getPendingClassifiedsCount();
+		int approvedClassifieds = this.getApprovedClassifiedsCount();
+		int rejectedClassifieds = this.getRejectedClassifiedsCount();
+		
+		
+		System.out.println("Total Number of Users: \t\t" + totalUsers);
+		System.out.println("Active Users: \t\t\t" + activeUsers);
+		System.out.println("De-activated Users: \t\t" + deActivatedUser);
+		System.out.println("Total Number of Classifieds: \t" + totalClassifieds);		
+		System.out.println("Pending Classifieds: \t\t" + pendingClassifieds);
+		System.out.println("Active Classifieds: \t\t" + approvedClassifieds);
+		System.out.println("Rejected Classifieds: \t\t" + rejectedClassifieds);
+		System.out.println("\n-----------------------------------------------\n");
+		
+	}
+
 }
