@@ -222,7 +222,7 @@ public class AdminOperation extends BaseOperation{
 		return true;
 	}
 
-	private boolean changeClassifiedStatus(String newSatus) throws ApplicationException, UserException {
+	private boolean changeClassifiedStatus(String newStatus) throws ApplicationException, UserException {
 		System.out.println("____________________________________");
 
 		System.out.println("Enter Id of classified");
@@ -238,8 +238,10 @@ public class AdminOperation extends BaseOperation{
 		
 		ClassifiedManager
 	            .getInstance()
-	            .update(classifiedId, "cStatus", newSatus);
-		
+	            .update(classifiedId, "cStatus", newStatus);
+
+		System.out.println("Classified id " +classifiedId +" status changed to " + newStatus);
+
 		System.out.println("____________________________________");
 
 		return true;

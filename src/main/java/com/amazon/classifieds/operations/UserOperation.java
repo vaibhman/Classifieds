@@ -174,9 +174,10 @@ public class UserOperation extends BaseOperation{
 
 					break;
 				
-				case "3":
+				case "0":
 					exitCode=true;
 					break;
+					
 				default:
 					System.out.println("Please select valid option.");
 			}

@@ -399,8 +399,8 @@ public class BaseOperation {
 			throw new UserException("\n Please enter valid Product Description ");
 		}
 
-		if (!Validator.isValidHeadLineLength(pDescription)) {
-			throw new UserException("Product Description value exceeds maximum size of 25 characters");
+		if (!Validator.isValidDescriptionLength(pDescription)) {
+			throw new UserException("Product Description value exceeds maximum size of 500 characters");
 		}
 
 		return pDescription;

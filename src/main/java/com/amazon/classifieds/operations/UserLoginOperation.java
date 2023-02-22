@@ -38,7 +38,7 @@ public class UserLoginOperation extends BaseOperation {
 			System.out.println("\nWelcome to the User Login/Sign-up Page");
 			System.out.println("\n1. Login " +
 					"\n2. Create Account" +
-					"\n0. Exit\n");
+					"\n0. Return to Main Menu\n");
 
 			choice = sc.next();
 
