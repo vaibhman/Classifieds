@@ -124,6 +124,7 @@ public class AdminOperation extends BaseOperation{
 					+"\n3. View All Classifieds"
 					+"\n4. View Pending Classifieds"
 					+"\n5. Remove Classified"
+					+"\n6. Change Category of Classified"
 					+"\n0. Return to Previous Menu \n");
 			
 			String choice = OperationFactory.getScannerInstance().next();
@@ -179,6 +180,18 @@ public class AdminOperation extends BaseOperation{
 					e.printStackTrace();
 				}
 					break;
+					
+				case "6":
+				try {
+					System.out.println("Select New Product Category: ");
+					String newCategory=this.getpCategory();
+					changeClassifiedCategory(newCategory);
+				} catch (ApplicationException | UserException e) {
+					System.out.println("Something Went Wrong");
+					e.printStackTrace();
+				}
+					break;
+					
 				case "0":
 					exitCode=true;
 					break;
@@ -254,8 +267,33 @@ public class AdminOperation extends BaseOperation{
 
 		return true;
 	}
+	
+	private boolean changeClassifiedCategory(String newStatus) throws ApplicationException, UserException {
+		System.out.println("____________________________________");
 
+		System.out.println("Enter Id of classified");
 
+		int classifiedId = this.getClassifiedId();
+		
+		if (!ClassifiedManager
+	            .getInstance()
+	            .isPresent("classifieds", "classifiedId", classifiedId)) {
+	      System.out.println("Classified Not Found");
+	      return false;
+		}
+		
+		ClassifiedManager
+	            .getInstance()
+	            .update(classifiedId, "pCategory", newStatus);
+
+		System.out.println("Classified id " +classifiedId +" status changed to " + newStatus);
+
+		System.out.println("____________________________________");
+
+		return true;
+	}
+
+	
 	private void manageUsers() {
 		boolean excode=false;
 		while(!excode) {
