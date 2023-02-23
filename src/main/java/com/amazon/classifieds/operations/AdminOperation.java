@@ -84,15 +84,23 @@ public class AdminOperation extends BaseOperation{
 
 		System.out.println("\n Description of Product: ");
 		String pDescription = this.getpDescription();
+		
+		System.out.println("\n Category of Product: ");
+		String pCategory = this.getpCategory();
+		
 
 		System.out.println("\n Enter the price of Product: ");
 		float price = this.getPrice();
+		
+		
+		System.out.println("\n Enter the Recurrance Unit ");
+		String recurringUnit = this.getRecurringUnit();
 
 		String cStatus="Approved";
 		
 		int userId= 111111111;
 
-		Classified newClassified = AssetFactory.getInstance().getClassifiedInstance(userId, cStatus, productName, headLine, brand, pCondition, pDescription, price);
+		Classified newClassified = AssetFactory.getInstance().getClassifiedInstance(userId, cStatus, productName, headLine, brand, pCondition, pDescription, pCategory, price, recurringUnit);
 		
 		ClassifiedManager.getInstance().create(newClassified);
 

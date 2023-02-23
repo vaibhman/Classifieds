@@ -21,7 +21,9 @@ CREATE TABLE classifieds (
 	brand VARCHAR(25),
 	pCondition INT,
 	pDescription VARCHAR(500),
+	pCategory VARCHAR(25),
 	price FLOAT(11,2),
+	recurringUnit VARCHAR(25),
 	FOREIGN KEY (userId) REFERENCES user(userId)
 );
 
@@ -42,11 +44,11 @@ INSERT INTO user (userId,name,email,contactNo, password, walletBalance, isActive
 VALUES(999999997,'Vijay Malya','vija@gmail.com','8648521564','vija1234', 5000,'false');
 
 
-INSERT INTO classifieds (classifiedId, userId, cStatus, productName, headLine, brand, pCondition, pDescription, price)
-VALUES(1, 999999999, 'Approved', 'Samsung S20', 'Brand new phone', 'Samsung', 1, '8 GB RAM/ 128 GB Storage',30000);
-INSERT INTO classifieds (classifiedId, userId, cStatus, productName, headLine, brand, pCondition, pDescription, price)
-VALUES(2, 999999999, 'Pending Approval', 'Mi TV', 'want to sell tv', 'Xiomi', 3, '32 inch smart tv 1 GB RAM, 8 GB Storage',8500);
-INSERT INTO classifieds (classifiedId, userId, cStatus, productName, headLine, brand, pCondition, pDescription, price)
-VALUES(3, 999999998, 'Pending Approval', 'Suzuki Access', '2013 model', 'Suzuki', 4, 'Bought in 2013, smoothly running',22700);
+INSERT INTO classifieds (classifiedId, userId, cStatus, productName, headLine, brand, pCondition, pDescription, pCategory, price, recurringUnit)
+VALUES(1, 999999999, 'Approved', 'Samsung S20', 'Brand new phone', 'Samsung', 1, '8 GB RAM/ 128 GB Storage', 'Electronics', 30000, "NA");
+INSERT INTO classifieds (classifiedId, userId, cStatus, productName, headLine, brand, pCondition, pDescription, pCategory, price, recurringUnit)
+VALUES(2, 999999999, 'Pending Approval', 'Mi TV', 'want to sell tv', 'Xiomi', 3, '32 inch smart tv 1 GB RAM, 8 GB Storage','Electronics', 8500, "NA");
+INSERT INTO classifieds (classifiedId, userId, cStatus, productName, headLine, brand, pCondition, pDescription, pCategory, price, recurringUnit)
+VALUES(3, 999999998, 'Pending Approval', 'Suzuki Access', '2013 model', 'Suzuki', 4, 'Bought in 2013, smoothly running', 'Bikes', 22700, "NA");
 
 INSERT INTO idgenerator(objectname,latestid) VALUES('classified',4);

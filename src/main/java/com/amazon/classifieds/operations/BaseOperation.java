@@ -406,6 +406,55 @@ public class BaseOperation {
 		return pDescription;
 	}
 
+	protected String getpCategory() throws UserException {
+
+		Scanner sc = OperationFactory.getScannerInstance();
+		
+		String pCategory = "";		
+		
+		boolean exitCode=false;
+		while(!exitCode) {
+			System.out.println("1.Electronics \n2.Furniture "
+					+ "\n3.Cars \n4. Bikes "
+					+ "\n5.Properties \n6. Others");
+			
+			String choice = sc.next();
+			
+			switch(choice){
+				case "1":
+					pCategory= "Electronics";
+					exitCode=true;
+					break;
+				case "2":
+					pCategory= "Furniture";
+					exitCode=true;
+					break;
+				case "3":
+					pCategory= "Cars";
+					exitCode=true;
+					break;
+				case "4":
+					pCategory= "Bikes";
+					exitCode=true;
+					break;
+				case "5":
+					pCategory= "Properties";
+					exitCode=true;
+					break;
+				case "6":
+					pCategory= "Others";
+					exitCode=true;
+					break;
+				default:
+					System.out.println("Please enter valid option");
+					break;
+			}
+		
+		}
+		
+		return pCategory;
+	}
+	
 	protected float getPrice() throws UserException {
 		Scanner sc = OperationFactory.getScannerInstance();
 
@@ -428,6 +477,42 @@ public class BaseOperation {
 		return price;
 	}
 
+	protected String getRecurringUnit() {
+
+		Scanner sc = OperationFactory.getScannerInstance();
+		
+		String recurringUnit = "";		
+		
+		boolean exitCode=false;
+		while(!exitCode) {
+			System.out.println("1.Per Month \n2.Per Year"
+					+ "\n0.Not Applicable");
+			
+			String choice = sc.next();
+			
+			switch(choice){
+				case "1":
+					recurringUnit = "Per Month";
+					exitCode=true;
+					break;
+				case "2":
+					recurringUnit = "Per Year";
+					exitCode=true;
+					break;
+				case "0":
+					recurringUnit = "NA";
+					exitCode=true;
+					break;
+				default:
+					System.out.println("Please enter valid option");
+					break;
+			}
+		
+		}
+		
+		return recurringUnit;
+	}
+	
 	//Report parameters
 	protected int getUsersCount() throws ClassNotFoundException, SQLException {
 		return ReportManager.getInstance().getUserCount();

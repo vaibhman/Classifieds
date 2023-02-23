@@ -22,10 +22,10 @@ public class AssetFactory {
 	
 
 	public Classified getClassifiedInstance(int userId, String cStatus, String productName, 
-											String headLine, String brand, int pCondition, String pDescription, float price) throws ApplicationException {
+											String headLine, String brand, int pCondition, String pDescription, String pCategory, float price, String recurringUnit) throws ApplicationException {
 	    int classifiedId = IdManager.getInstance().getNewId("classified");
 	    
-		Classified classified = new Classified(classifiedId, userId, cStatus, productName, headLine, brand, pCondition, pDescription, price);
+		Classified classified = new Classified(classifiedId, userId, cStatus, productName, headLine, brand, pCondition, pDescription, pCategory, price, recurringUnit);
 		
 		return classified;
 	}

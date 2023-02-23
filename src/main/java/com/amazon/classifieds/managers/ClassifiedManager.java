@@ -42,7 +42,9 @@ public class ClassifiedManager extends BaseManager{
 				.insertValue("brand", classified.getBrand())
 				.insertValue("pCondition", classified.getpCondition())
 				.insertValue("pDescription",classified.getpDescription())
-				.insertValue("price", classified.getPrice());
+				.insertValue("pCategory",classified.getpCategory())
+				.insertValue("price", classified.getPrice())
+				.insertValue("recurringUnit",classified.getRecurringUnit());
 
 		String sqlQuery=this.buildQuery(queryBuilder);
 
@@ -80,7 +82,7 @@ public class ClassifiedManager extends BaseManager{
 	public boolean viewAllClassifieds() throws ApplicationException, ClassNotFoundException, SQLException{
 		String[] columns = {"classifiedId", "userId", "cStatus", 
 				"productName", "headLine", "brand", 
-				"pCondition", "pDescription","price"};
+				"pCondition", "pDescription", "pCategory", "price", "recurringUnit"};
 
 		QueryBuilder queryBuilder = this.getSelectInstance()
 				.selectColumns(columns)
@@ -106,7 +108,9 @@ public class ClassifiedManager extends BaseManager{
 			System.out.println("Brand Name\t: " + resultSet.getString(6));
 			System.out.println("Condition\t: " + getpConditionString(resultSet.getInt(7)));
 			System.out.println("Description\t: " + resultSet.getString(8));
-			System.out.println("Product Price\t: " + resultSet.getFloat(9));
+			System.out.println("Category\t: " + resultSet.getString(9));
+			System.out.println("Product Price\t: " + resultSet.getFloat(10));
+			System.out.println("Recurrance\t: " + resultSet.getString(11));
 			System.out.println("----------------------------------");
 		}
 		System.out.println("----------------------------------");
@@ -117,7 +121,7 @@ public class ClassifiedManager extends BaseManager{
 	public boolean viewApprovedClassifieds() throws ApplicationException, SQLException, ClassNotFoundException{
 		String[] columns = {"classifiedId", "userId", "productName", 
 				"headLine", "brand", "pCondition", 
-				"pDescription","price"};
+				"pDescription", "pCategory", "price", "recurringUnit"};
 
 		QueryBuilder queryBuilder = this.getSelectInstance()
 				.selectColumns(columns)
@@ -144,7 +148,9 @@ public class ClassifiedManager extends BaseManager{
 			System.out.println("Brand Name\t: " + resultSet.getString(5));
 			System.out.println("Condition\t: " + getpConditionString(resultSet.getInt(6)));
 			System.out.println("Description\t: " + resultSet.getString(7));
-			System.out.println("Product Price\t: " + resultSet.getFloat(8));
+			System.out.println("Category\t: " + resultSet.getString(8));
+			System.out.println("Product Price\t: " + resultSet.getFloat(9));
+			System.out.println("Recurrance\t: " + resultSet.getString(10));
 			System.out.println("----------------------------------");
 		}
 		System.out.println("----------------------------------");
@@ -154,7 +160,7 @@ public class ClassifiedManager extends BaseManager{
 	public boolean viewPendingClassifieds() throws ApplicationException, ClassNotFoundException, SQLException{
 		String[] columns = {"classifiedId", "userId", "cStatus", 
 				"productName", "headLine", "brand", 
-				"pCondition", "pDescription","price"};
+				"pCondition", "pDescription", "pCategory", "price", "recurringUnit"};
 
 		QueryBuilder queryBuilder = this.getSelectInstance()
 				.selectColumns(columns)
@@ -181,7 +187,9 @@ public class ClassifiedManager extends BaseManager{
 			System.out.println("Brand Name\t: " + resultSet.getString(6));
 			System.out.println("Condition\t: " + getpConditionString(resultSet.getInt(7)));
 			System.out.println("Description\t: " + resultSet.getString(8));
-			System.out.println("Product Price\t: " + resultSet.getFloat(9));
+			System.out.println("Category\t: " + resultSet.getString(9));
+			System.out.println("Product Price\t: " + resultSet.getFloat(10));
+			System.out.println("Recurrance\t: " + resultSet.getString(11));
 			System.out.println("----------------------------------");
 		}
 		System.out.println("----------------------------------");

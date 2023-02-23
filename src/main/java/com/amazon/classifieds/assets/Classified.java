@@ -26,10 +26,12 @@ public class Classified {
 	private String brand; 
 	private int pCondition; 
 	private String pDescription; 
+	private String pCategory;
 	private float price;
+	private String recurringUnit;
 	
 	public Classified(int classifiedId, int userId, String cStatus, String productName, String headLine, String brand,
-			int pCondition, String pDescription, float price) {
+			int pCondition, String pDescription, String pCategory, float price, String recurringUnit) {
 		super();
 		this.classifiedId = classifiedId;
 		this.userId = userId;
@@ -39,7 +41,9 @@ public class Classified {
 		this.brand = brand;
 		this.pCondition = pCondition;
 		this.pDescription = pDescription;
+		this.pCategory = pCategory;
 		this.price = price;
+		this.recurringUnit =recurringUnit;
 	}
 	
 	public int getClassifiedId() {
@@ -74,7 +78,18 @@ public class Classified {
 		return pDescription;
 	}
 	
+	public String getpCategory() {
+		return pCategory;
+	}
+
 	public float getPrice() {
 		return price;
 	}
+
+	public String getRecurringUnit() {
+		return recurringUnit;
+	}
+
+	
+	
 }
