@@ -292,7 +292,6 @@ public class AdminOperation extends BaseOperation{
 
 		return true;
 	}
-
 	
 	private void manageUsers() {
 		boolean excode=false;
