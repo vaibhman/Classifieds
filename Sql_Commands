@@ -35,13 +35,13 @@ CREATE TABLE idgenerator(
 
 #Create_values
 INSERT INTO user (userId,name,email,contactNo, password, walletBalance, isActive)
-VALUES(111111111,'ADMIN','admin@amazon.com','9856462378','ADMIN', 0,'true');
+VALUES(111111111,'ADMIN','admin@amazon.com','9856462378','ADMIN', 50000,'true');
 INSERT INTO user (userId,name,email,contactNo, password, walletBalance, isActive)
-VALUES(999999999,'Vinod Mahajan','vima@amazon.com','9876787896','vino1234', 1567.33,'true');
+VALUES(999999999,'Prakash Thakur','prak@amazon.com','998877665','prak1234', 4565,'true');
 INSERT INTO user (userId,name,email,contactNo, password, walletBalance, isActive)
-VALUES(999999998,'Bikash Kumar','bika@gmail.com','919008795029','bika1234', 2000,'true');
+VALUES(999999998,'Mahendra Sinha','masi@gmail.com','9977553311','masi1234', 2000,'true');
 INSERT INTO user (userId,name,email,contactNo, password, walletBalance, isActive)
-VALUES(999999997,'Vijay Malya','vija@gmail.com','8648521564','vija1234', 5000,'false');
+VALUES(999999997,'Vijesh Goyal','vigo@gmail.com','8877665544','vigo1234', 5000,'false');
 
 
 INSERT INTO classifieds (classifiedId, userId, cStatus, productName, headLine, brand, pCondition, pDescription, pCategory, price, recurringUnit)

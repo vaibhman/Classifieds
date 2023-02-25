@@ -82,7 +82,7 @@ public class UserOperation extends BaseOperation{
 					System.out.println("Something Went Wrong...");
 					e.printStackTrace();
 				}
-
+				break;
 				
 			case "0":
 				exitCode = true;
@@ -93,7 +93,6 @@ public class UserOperation extends BaseOperation{
 			}
 		}
 
-		System.out.println("Thank You For Using our Employee Internal Classifieds Application\n");
 	}
 	
 
@@ -153,8 +152,10 @@ public class UserOperation extends BaseOperation{
 			switch (choice) {
 				case "1":
 					try {
-						UserManager.getInstance().addMoneytoWallet(userId, walletBalance);						
-						System.out.println("\nMoney Added Successfully!");
+						if(UserManager.getInstance().addMoneytoWallet(userId, walletBalance)) {
+							System.out.println("\nMoney Added Successfully!");
+						}						
+						
 						System.out.println("\n---------------------------------------------\n");
 					} catch (ClassNotFoundException | SQLException | ApplicationException | UserException e) {
 						System.out.println("Something Went Wrong...");
@@ -164,8 +165,10 @@ public class UserOperation extends BaseOperation{
 					
 				case "2":
 					try {
-						UserManager.getInstance().withdrawMoneyFromWallet(userId, walletBalance);
-						System.out.println("\nMoney Withdrawed Successfully!");
+						if(UserManager.getInstance().withdrawMoneyFromWallet(userId, walletBalance)) {
+							System.out.println("\nMoney Withdrawed Successfully!");
+
+						}
 						System.out.println("\n---------------------------------------------\n");
 					} catch (ClassNotFoundException | SQLException | ApplicationException | UserException e) {
 						System.out.println("Something Went Wrong...");

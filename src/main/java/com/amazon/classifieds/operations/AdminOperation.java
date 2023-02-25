@@ -328,9 +328,10 @@ public class AdminOperation extends BaseOperation{
 
 	}
 
-	private boolean activateUser() throws ApplicationException{
-
-		System.out.println("Enter User Id (9 digit): ");
+	private boolean activateUser() throws ApplicationException, SQLException{	
+		System.out.println("For your reference.....");
+		UserManager.getInstance().viewAllUsers();
+		System.out.println("\nEnter User Id (9 digit): ");
 		int userId = OperationFactory.getScannerInstance().nextInt();
 		UserManager
 		.getInstance()
@@ -342,9 +343,10 @@ public class AdminOperation extends BaseOperation{
 		return true;
 	}
 	
-	private boolean deActivateUser() throws ApplicationException{
-
-		System.out.println("Enter User Id (9 digit): ");
+	private boolean deActivateUser() throws ApplicationException, SQLException{
+		System.out.println("For your reference.....");
+		UserManager.getInstance().viewAllUsers();
+		System.out.println("\nEnter User Id (9 digit): ");
 		int userId = OperationFactory.getScannerInstance().nextInt();
 		UserManager
 		.getInstance()

@@ -1,4 +1,6 @@
-OOPS-> Identify Objects and Attributes
+1. Flow Mapping
+
+2. OOPS-> Identify Objects and Attributes
 	Admin
 		adminId; password;
 	User 
@@ -10,7 +12,19 @@ OOPS-> Identify Objects and Attributes
 		totalUser; activeUsers; deActivatedUser; totalClassifieds; pendingClassifieds; 
 		approvedClassifieds; rejectedClassifieds; averageProductPrice;
 		 
-Relationships
-	User has classifieds	|	1 to many
-	classified has User		|	1 to 1
+		
+3. ORM -> Entity relationship | DBMS
+
+4. Code the Project
+
+5. Test cases
+
+6. Build the project
+	Packaging of Project in a Jar File
+	JAR -> Java Archive
+
+> Eclipse IDE
+	Build tool -> Maven
+
+> MySQL DataBase
 	

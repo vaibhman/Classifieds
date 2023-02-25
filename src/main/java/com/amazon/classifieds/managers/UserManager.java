@@ -1,5 +1,6 @@
 package com.amazon.classifieds.managers;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.amazon.classifieds.assets.User;
@@ -156,6 +157,41 @@ public class UserManager extends BaseManager {
 		.getInstance()
 		.setWalletBalance(userId, newValue);
 	}
+	
+	public boolean viewAllUsers() throws SQLException, ApplicationException {
+		String[] columns = {"userId", "name", "isActive"};
+
+		QueryBuilder queryBuilder = this.getSelectInstance()
+				.selectColumns(columns)
+				.onTable("user");
+
+		String sqlQuery = this.buildQuery(queryBuilder);
+
+		if (!this.hasResult(sqlQuery)) {
+			System.out.println("No Users Found");
+			return false;
+		}
+
+
+		ResultSet resultSet = this.getResultSet(sqlQuery);
+
+		while(resultSet.next()) {
+			System.out.println("----------------------------------");
+			System.out.println("User Id\t: " + resultSet.getInt(1));
+			System.out.println("Name \t: " + resultSet.getString(2));
+			System.out.println("Current Status\t: " + getUserAcStatus(resultSet.getString(3)));
+			System.out.println("----------------------------------");
+		}
+		return true;
+	}
+	
+	public String getUserAcStatus(String isActive) {
+		if(isActive.equals("false")) {
+			return "De-Activated";
+		}
+		return "Active";
+	}
+
 	
 }
 
